@@ -50,5 +50,5 @@ document.addEventListener('DOMContentLoaded', function () {
     newField.appendChild(deleteButton);
 
     fieldsContainer.appendChild(newField);
-  });
-});
+  })
+})
