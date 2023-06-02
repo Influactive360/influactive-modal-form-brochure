@@ -1,0 +1,27 @@
+html body:not(.wp-admin):not(.tarteaucitron-modal-open) div.modal-form {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+}
+
+html body:not(.wp-admin):not(.tarteaucitron-modal-open) div.modal-form .modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto;
+  border: 1px solid #888;
+  width: 80%;
+  padding: 20px;
+}
+
+html body:not(.wp-admin):not(.tarteaucitron-modal-open) div.modal-form .modal-content .close {
+  cursor: pointer;
+  float: right;
+  right: 15px;
+  top: 5px;
+}
