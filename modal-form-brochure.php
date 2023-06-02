@@ -32,13 +32,24 @@ function add_modal_form(): void
     <div id="modal-form" class="modal-form">
         <div class="modal-content">
             <span id="modal-form-close" class="close">&times;</span>
-            <h2>Demande de brochure</h2>
+            <h2>Vous souhaitez télécharger cette fiche produit ?</h2>
+            <hr>
+            <p>Afin de recevoir votre fiche produit, merci de remplir vos informations ci-dessous, nous vous enverrons
+                un lien par email pour le télécharger.</p>
             <form action="<?= plugin_dir_url(__FILE__) . 'process-form.php' ?>" method="post">
                 <?php foreach ($fields as $field): ?>
-                    <label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label><br>
+                    <label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label>
                     <input type="<?php echo $field['type']; ?>" id="<?php echo $field['name']; ?>"
-                           name="<?php echo $field['name']; ?>"><br>
+                           name="<?php echo $field['name']; ?>">
                 <?php endforeach; ?>
+                <label for="nom_prenom">Nom et prénom</label>
+                <input type="text" id="nom_prenom" name="nom_prenom">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+                <label for="societe">Société</label>
+                <input type="text" id="societe" name="societe">
+                <label for="code_postal">Code postal</label>
+                <input type="text" id="code_postal" name="code_postal">
                 <input type="submit" value="Soumettre">
             </form>
         </div>
@@ -62,8 +73,8 @@ function modal_form_options_page(): void
         <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
         <form action="options.php" method="post">
             <?php
-            settings_fields('modal_form_fields');
-            do_settings_sections('modal_form_options');
+            settings_fields('modal_form_options');
+            do_settings_sections('modal-form-options');
             submit_button('Save Settings');
             ?>
         </form>
@@ -75,9 +86,9 @@ function modal_form_options_page(): void
 
 function modal_form_settings_init(): void
 {
-    register_setting('modal_form_fields', 'modal_form_fields', 'modal_form_options_validate');
+    register_setting('modal_form_options', 'modal_form_fields', 'modal_form_options_validate');
 
-    add_settings_section('modal_form_main', 'Main Settings', 'modal_form_fields_callback', 'modal_form_options');
+    add_settings_section('modal_form_main', 'Main Settings', 'modal_form_fields_callback', 'modal-form-options');
 }
 
 add_action('admin_init', 'modal_form_settings_init');
@@ -91,11 +102,14 @@ function modal_form_fields_callback(): void
             <?php foreach ($form_fields as $field): ?>
                 <div class="field">
                     <label for="type">Type:</label>
-                    <input id="type" type="text" name="field_type[]" value="<?php echo esc_attr($field['type']); ?>">
+                    <input id="type" type="text" name="modal_form_fields[field_type][]"
+                           value="<?php echo esc_attr($field['type']); ?>">
                     <label for="label">Label:</label>
-                    <input id="label" type="text" name="field_label[]" value="<?php echo esc_attr($field['label']); ?>">
+                    <input id="label" type="text" name="modal_form_fields[field_label][]"
+                           value="<?php echo esc_attr($field['label']); ?>">
                     <label for="name">Name:></label>
-                    <input id="name" type="text" name="field_name[]" value="<?php echo esc_attr($field['name']); ?>">
+                    <input id="name" type="text" name="modal_form_fields[field_name][]"
+                           value="<?php echo esc_attr($field['name']); ?>">
                     <button class="delete-field" type="button">Delete</button>
                 </div>
             <?php endforeach; ?>
@@ -114,19 +128,15 @@ function modal_form_options_validate($input): array
     // Initialize the new array that will hold the sanitize values
     $new_input = array();
 
-    if (is_array($input) && isset($input['field_type']) && isset($input['field_label']) && isset($input['field_name'])) {
-        // Make sure all three arrays have the same size
-        if (count($input['field_type']) === count($input['field_label']) && count($input['field_type']) === count($input['field_name'])) {
-            // Loop through each of the inputs
-            for ($i = 0, $iMax = count($input['field_type']); $i < $iMax; $i++) {
-                // Check if the input is a string, if it is, sanitize it
-                if (is_string($input['field_type'][$i]) && is_string($input['field_label'][$i]) && is_string($input['field_name'][$i])) {
-                    $new_input[] = array(
-                        'type' => sanitize_text_field($input['field_type'][$i]),
-                        'label' => sanitize_text_field($input['field_label'][$i]),
-                        'name' => sanitize_text_field($input['field_name'][$i]),
-                    );
-                }
+    if (is_array($input)) {
+        for ($i = 0, $iMax = count($input['field_type']); $i < $iMax; $i++) {
+            // Check if the input is a string, if it is, sanitize it
+            if (is_string($input['field_type'][$i]) && is_string($input['field_label'][$i]) && is_string($input['field_name'][$i])) {
+                $new_input[] = array(
+                    'type' => sanitize_text_field($input['field_type'][$i]),
+                    'label' => sanitize_text_field($input['field_label'][$i]),
+                    'name' => sanitize_text_field($input['field_name'][$i]),
+                );
             }
         }
     }

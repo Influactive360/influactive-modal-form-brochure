@@ -16,12 +16,40 @@ html body:not(.wp-admin):not(.tarteaucitron-modal-open) div.modal-form .modal-co
   margin: 5% auto 15% auto;
   border: 1px solid #888;
   width: 80%;
-  padding: 20px;
 }
 
 html body:not(.wp-admin):not(.tarteaucitron-modal-open) div.modal-form .modal-content .close {
   cursor: pointer;
   float: right;
-  right: 15px;
-  top: 5px;
+  right: 0  ;
+  top: 0;
+  position: relative;
+  font-size: 42px;
+}
+
+/* EN ATTENDANT QUE JE TERMINE LE FORMULAIRE */
+html body:not(.wp-admin):not(.tarteaucitron-modal-open) div.modal-form .modal-content {
+  padding: 4rem;
+}
+
+html body:not(.wp-admin):not(.tarteaucitron-modal-open) div.modal-form .modal-content h2, html body:not(.wp-admin):not(.tarteaucitron-modal-open) div.modal-form .modal-content p, html body:not(.wp-admin):not(.tarteaucitron-modal-open) div.modal-form .modal-content hr {
+  text-align: center;
+}
+
+html body:not(.wp-admin):not(.tarteaucitron-modal-open) div.modal-form .modal-content hr {
+  width: 15%;
+  margin: 2rem auto 3rem;
+}
+
+html body:not(.wp-admin):not(.tarteaucitron-modal-open) div.modal-form .modal-content form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+html body:not(.wp-admin):not(.tarteaucitron-modal-open) div.modal-form .modal-content form input {
+  z-index: 1;
+  padding-top: 0;
+  border-bottom: 1px solid #0972b3;
+  background: none;
 }

@@ -1,12 +1,11 @@
 <?php
 // load wordpress environment
 if (!isset($GLOBALS['wpdb'])) {
-    $path = preg_replace('/wp-content(?!.*wp-content).*/', '', __DIR__);
-    require_once($path . 'wp-load.php');
+    require_once('../../wordpress/wp-load.php');
 }
 
 // Check nonce for security
-check_ajax_referer('ajax_nonce', 'nonce');
+// check_ajax_referer('ajax_nonce', 'nonce');
 
 function send_form_email($data): void
 {
@@ -19,7 +18,11 @@ function send_form_email($data): void
         $message .= ucwords($key) . ': ' . $value . "\n";
     }
 
-    wp_mail($to, $subject, $message);
+    if (wp_mail($to, $subject, $message)) {
+        echo 'Email sent successfully';
+    } else {
+        echo 'An error occurred';
+    }
 }
 
 // Check if the necessary data is available
