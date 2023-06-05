@@ -26,12 +26,21 @@ function send_form_email($data): void
 }
 
 // Check if the necessary data is available
-if (!empty($_POST['form_data'])) {
-    parse_str($_POST['form_data'], $form_data); // This will convert the form data into an array
+$data_to_check = get_option('modal_form_fields');
+$errors = [];
+foreach ($data_to_check as $key => $value) {
+    if (empty($_POST[$value['name']])) {
+        $errors[] = 'Missing ' . $value['name'];
+    }
+}
+
+if (empty($errors)) {
+    // parse_str($_POST['form_data'], $form_data); // This will convert the form data into an array
+    $form_data = $_POST;
     send_form_email($form_data);
     echo 'Form submitted successfully';
 } else {
-    echo 'Missing form data';
+    echo implode("\n", $errors);
 }
 
 die();

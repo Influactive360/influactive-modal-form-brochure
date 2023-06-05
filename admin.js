@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const typeInput = document.createElement('input');
     typeInput.setAttribute('id', 'type');
     typeInput.setAttribute('type', 'text');
-    typeInput.setAttribute('name', 'field_type[]');
+    typeInput.setAttribute('name', 'modal_form_fields[field_type][]');
     newField.appendChild(typeInput);
 
     const labelLabel = document.createElement('label');
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const labelInput = document.createElement('input');
     labelInput.setAttribute('id', 'label');
     labelInput.setAttribute('type', 'text');
-    labelInput.setAttribute('name', 'field_label[]');
+    labelInput.setAttribute('name', 'modal_form_fields[field_label][]');
     newField.appendChild(labelInput);
 
     const nameLabel = document.createElement('label');
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const nameInput = document.createElement('input');
     nameInput.setAttribute('id', 'name');
     nameInput.setAttribute('type', 'text');
-    nameInput.setAttribute('name', 'field_name[]');
+    nameInput.setAttribute('name', 'modal_form_fields[field_name][]');
     newField.appendChild(nameInput);
 
     const deleteButton = document.createElement('button');
@@ -45,10 +45,20 @@ document.addEventListener('DOMContentLoaded', function () {
     deleteButton.setAttribute('type', 'button');
     deleteButton.textContent = 'Delete';
     deleteButton.addEventListener('click', function () {
+      console.log('delete');
       newField.remove();
     });
     newField.appendChild(deleteButton);
 
     fieldsContainer.appendChild(newField);
+  })
+
+  // bind deletes buttons
+  const deleteButtons = document.querySelectorAll('.delete-field');
+  deleteButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      console.log('delete');
+      button.parentElement.remove();
+    })
   })
 })

@@ -24,4 +24,26 @@ window.addEventListener('load', function () {
       }
     })
   }
+
+  // on form submit
+  const form = document.querySelector('#modal-form form')
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault()
+      const formData = new FormData(form)
+
+      let xhr = new XMLHttpRequest();
+      xhr.open('POST', form.action, true);
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var html = xhr.responseText;
+          console.log(html);
+          modalForm.querySelector('.message').innerHTML = html;
+        }
+      };
+
+      xhr.send(formData);
+    })
+  }
 })
