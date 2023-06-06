@@ -110,6 +110,7 @@ function modal_form_fields_callback(): void
     $email_recipient = get_option('modal_form_email_recipient', get_bloginfo('admin_email'));
     $email_field = get_option('modal_form_email_field', get_bloginfo('admin_email'));
     $name_field = get_option('modal_form_name_field', 'Name');
+    $rgpd = get_option('modal_form_rgpd_field', 'I agree to receive emails from this website');
     ?>
     <div id="content-edit">
         <label for="modal_form_title">Form Title:</label>
@@ -120,22 +121,32 @@ function modal_form_fields_callback(): void
         <input id="modal_form_submit_text" type="text" name="modal_form_submit_text" value="<?= esc_attr($form_submit_text ?? 'Submit') ?>">
     </div>
     <div id="recipient-fields">
-        <label for="email_field">Email Field:</label>
+        <label for="email_field">User Email Field:</label>
         <select id="email_field" name="modal_form_email_field">
             <?php foreach ($form_fields as $field) : ?>
                 <option value="<?= $field['name'] ?>" <?= $field['name'] === $email_field ? 'selected' : '' ?>><?= $field['label'] ?></option>
             <?php endforeach; ?>
         </select>
 
-        <label for="name_field">Name Field:</label>
+        <label for="name_field">User Name Field:</label>
         <select id="name_field" name="modal_form_name_field">
             <?php foreach ($form_fields as $field) : ?>
                 <option value="<?= $field['name'] ?>" <?= $field['name'] === $name_field ? 'selected' : '' ?>><?= $field['label'] ?></option>
             <?php endforeach; ?>
         </select>
+        <label for="rgpd_field">RGPD Field:</label>
+        <select id="rgpd_field" name="modal_form_rgpd_field">
+            <?php foreach ($form_fields as $field) :
+                if ($field['type'] !== 'checkbox') {
+                    continue;
+                }
+                ?>
+                <option value="<?= $field['name'] ?>" <?= $field['name'] === $rgpd ? 'selected' : '' ?>><?= $field['label'] ?></option>
+            <?php endforeach; ?>
+        </select>
     </div>
     <div id="email-recipient">
-        <label for="email_recipient">Email Recipient:</label>
+        <label for="email_recipient">Admin Email Recipient:</label>
         <input id="email_recipient" type="text" name="modal_form_email_recipient" value="<?= esc_attr($email_recipient) ?>">
     </div>
     <div id="form-fields">
@@ -203,6 +214,10 @@ function modal_form_options_validate($input): array
 
         if (isset($input['modal_form_name_field'])) {
             $new_input['modal_form_name_field'] = sanitize_title($input['modal_form_name_field']);
+        }
+
+        if (isset($input['modal_form_rgpd_field'])) {
+            $new_input['modal_form_rgpd_field'] = sanitize_title($input['modal_form_rgpd_field']);
         }
     }
 
