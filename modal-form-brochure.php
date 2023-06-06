@@ -94,6 +94,8 @@ function modal_form_settings_init(): void
     register_setting('modal_form_options', 'modal_form_description', 'sanitize_text_field');
     register_setting('modal_form_options', 'modal_form_submit_text', 'sanitize_text_field');
     register_setting('modal_form_options', 'modal_form_email_recipient');
+    register_setting('modal_form_options', 'modal_form_email_field');
+    register_setting('modal_form_options', 'modal_form_name_field');
     add_settings_section('modal_form_main', 'Main Settings', 'modal_form_fields_callback', 'modal-form-options');
 }
 
@@ -106,6 +108,8 @@ function modal_form_fields_callback(): void
     $form_description = get_option('modal_form_description');
     $form_submit_text = get_option('modal_form_submit_text');
     $email_recipient = get_option('modal_form_email_recipient', get_bloginfo('admin_email'));
+    $email_field = get_option('modal_form_email_field', get_bloginfo('admin_email'));
+    $name_field = get_option('modal_form_name_field', 'Name');
     ?>
     <div id="content-edit">
         <label for="modal_form_title">Form Title:</label>
@@ -114,6 +118,21 @@ function modal_form_fields_callback(): void
         <input id="modal_form_description" type="text" name="modal_form_description" value="<?= esc_attr($form_description ?? 'In order to receive your product sheet, please fill in your information below, we will send you a link by email to download it.') ?>">
         <label for="modal_form_submit_text">Submit Button Text:</label>
         <input id="modal_form_submit_text" type="text" name="modal_form_submit_text" value="<?= esc_attr($form_submit_text ?? 'Submit') ?>">
+    </div>
+    <div id="recipient-fields">
+        <label for="email_field">Email Field:</label>
+        <select id="email_field" name="modal_form_email_field">
+            <?php foreach ($form_fields as $field) : ?>
+                <option value="<?= $field['name'] ?>" <?= $field['name'] === $email_field ? 'selected' : '' ?>><?= $field['label'] ?></option>
+            <?php endforeach; ?>
+        </select>
+
+        <label for="name_field">Name Field:</label>
+        <select id="name_field" name="modal_form_name_field">
+            <?php foreach ($form_fields as $field) : ?>
+                <option value="<?= $field['name'] ?>" <?= $field['name'] === $name_field ? 'selected' : '' ?>><?= $field['label'] ?></option>
+            <?php endforeach; ?>
+        </select>
     </div>
     <div id="email-recipient">
         <label for="email_recipient">Email Recipient:</label>
@@ -176,6 +195,14 @@ function modal_form_options_validate($input): array
         }
         if (isset($input['modal_form_email_recipient']) && is_email($input['modal_form_email_recipient'])) {
             $new_input['modal_form_email_recipient'] = sanitize_email($input['modal_form_email_recipient']);
+        }
+
+        if (isset($input['modal_form_email_field'])) {
+            $new_input['modal_form_email_field'] = sanitize_title($input['modal_form_email_field']);
+        }
+
+        if (isset($input['modal_form_name_field'])) {
+            $new_input['modal_form_name_field'] = sanitize_title($input['modal_form_name_field']);
         }
     }
 
