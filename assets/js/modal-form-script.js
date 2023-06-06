@@ -3,7 +3,7 @@ window.addEventListener('load', function () {
   console.log(brochureLinks)
   const modalForm = document.querySelector('#modal-form')
   const modalFormClose = document.querySelector('#modal-form-close')
-  let file; // variable for storing the file URL
+  let file // variable for storing the file URL
 
   if (brochureLinks && modalForm && modalFormClose) {
     brochureLinks.forEach(function (element) {
@@ -11,22 +11,22 @@ window.addEventListener('load', function () {
         e.preventDefault()
 
         // Retrieve the full href including query parameters
-        const href = element.getAttribute('href');
+        const href = element.getAttribute('href')
 
         // Check if href contains '?'
         if (href.includes('?')) {
           // Split the href on the '?' character to get the parameters
-          const parts = href.split('?');
+          const parts = href.split('?')
 
           // Check if we have parameters
           if (parts.length > 1) {
             // Split the parameters on the '=' character to get the file URL
-            const params = parts[1].split('=');
+            const params = parts[1].split('=')
 
             // Check if we have a file parameter
             if (params[0] === 'file') {
-              file = params[1];
-              console.log(file);
+              file = params[1]
+              console.log(file)
             }
           }
         }
@@ -58,19 +58,19 @@ window.addEventListener('load', function () {
 
       // Add the file URL to the form data
       if (file) {
-        formData.append('file', file);
+        formData.append('file', file)
       }
 
-      let xhr = new XMLHttpRequest();
-      xhr.open('POST', form.action, true);
+      const xhr = new XMLHttpRequest()
+      xhr.open('POST', form.action, true)
 
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-          modalForm.querySelector('.message').innerHTML = xhr.responseText;
+          modalForm.querySelector('.message').innerHTML = xhr.responseText
         }
-      };
+      }
 
-      xhr.send(formData);
+      xhr.send(formData)
     })
   }
 })
