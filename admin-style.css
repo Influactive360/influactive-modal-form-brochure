@@ -16,7 +16,7 @@
   font-weight: bold;
 }
 
-#content-edit input[type="text"] {
+#content-edit input[type="text"], #content-edit textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
@@ -47,6 +47,7 @@
 #form-fields .field .delete-field {
   display: block;
   margin-top: 10px;
+  float: right;
 }
 
 .submit {
