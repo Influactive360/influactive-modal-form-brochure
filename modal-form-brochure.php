@@ -46,8 +46,8 @@ function add_modal_form(): void
             <p class="description"><?= $description ?></p>
             <form action="<?= plugin_dir_url(__FILE__) . 'process-form.php' ?>" method="post">
                 <?php foreach ($fields as $field) : ?>
-                    <div class="form-group">
-                        <label for="<?= $field['name'] ?>"><?= $field['label'] ?></label>
+                    <div class="form-group" data-type="<?= $field['type'] ?>">
+                        <label for="<?= $field['name'] ?>" data-type="<?= $field['type'] ?>"><?= $field['label'] ?></label>
                         <?php if ($field['type'] === 'textarea') : ?>
                             <textarea id="<?= $field['name'] ?>" name="<?= $field['name'] ?>"
                                       rows="6" <?= $field['required'] ? 'required' : '' ?>></textarea>
