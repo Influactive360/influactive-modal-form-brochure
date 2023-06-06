@@ -1,0 +1,63 @@
+/* admin-style.css */
+
+.wrap {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#content-edit {
+  background-color: #f1f1f1;
+  margin-bottom: 20px;
+}
+
+#content-edit label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#content-edit input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+}
+
+#form-fields .field {
+  background-color: #f1f1f1;
+  padding: 20px 0;
+  margin-bottom: 10px;
+}
+
+#form-fields .field label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#form-fields .field input[type="text"],
+#form-fields .field select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+}
+
+#form-fields .field .delete-field {
+  display: block;
+  margin-top: 10px;
+}
+
+.submit {
+  display: block;
+  width: 100%;
+}
+
+#submit {
+  display: block;
+  width: 200px; /* Adjust as needed */
+  height: 50px; /* Adjust as needed */
+  margin: 20px auto 0; /* Auto centers the button */
+  font-size: 1.5em; /* Adjust as needed */
+  text-align: center;
+}
