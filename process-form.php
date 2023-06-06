@@ -9,7 +9,7 @@ if (!isset($GLOBALS['wpdb'])) {
 
 function send_form_email($data): void
 {
-    $to = 'a.greuzard@influactive.com'; // Replace with your email address
+    $to = get_option('modal_form_email_recipient', get_bloginfo('admin_email')); // Replace with your email address
     $subject = 'New Brochure Request';
     $message = '';
 
