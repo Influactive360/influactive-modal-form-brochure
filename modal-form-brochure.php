@@ -50,7 +50,9 @@ function add_modal_form(): void
                         <input type="<?= $field['type'] ?>" id="<?= $field['name'] ?>" name="<?= $field['name'] ?>" <?= $field['required'] ? 'required' : '' ?>>
                     <?php endif; ?>
                 <?php endforeach ?>
-                <input type="submit" value="<?= $submit_text ?>">
+                <?php if (count($fields) > 0) : ?>
+                    <input type="submit" value="<?= $submit_text ?>">
+                <?php endif; ?>
             </form>
             <div class="message"></div>
         </div>
@@ -107,11 +109,11 @@ function modal_form_fields_callback(): void
     ?>
     <div id="content-edit">
         <label for="modal_form_title">Form Title:</label>
-        <input id="modal_form_title" type="text" name="modal_form_title" value="<?= esc_attr($form_title ?? '') ?>">
+        <input id="modal_form_title" type="text" name="modal_form_title" value="<?= esc_attr($form_title ?? 'Do you want to download this product sheet?') ?>">
         <label for="modal_form_description">Form Description:</label>
-        <input id="modal_form_description" type="text" name="modal_form_description" value="<?= esc_attr($form_description ?? '') ?>">
+        <input id="modal_form_description" type="text" name="modal_form_description" value="<?= esc_attr($form_description ?? 'In order to receive your product sheet, please fill in your information below, we will send you a link by email to download it.') ?>">
         <label for="modal_form_submit_text">Submit Button Text:</label>
-        <input id="modal_form_submit_text" type="text" name="modal_form_submit_text" value="<?= esc_attr($form_submit_text ?? '') ?>">
+        <input id="modal_form_submit_text" type="text" name="modal_form_submit_text" value="<?= esc_attr($form_submit_text ?? 'Submit') ?>">
     </div>
     <div id="email-recipient">
         <label for="email_recipient">Email Recipient:</label>
