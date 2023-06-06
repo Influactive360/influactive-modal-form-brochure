@@ -39,12 +39,14 @@ window.addEventListener('load', function () {
     modalFormClose.addEventListener('click', function () {
       modalForm.style.display = 'none'
       document.body.style.overflow = 'auto'
+      document.body.style.overflowX = 'hidden'
     })
 
     window.addEventListener('click', function (e) {
       if (e.target === modalForm) {
         modalForm.style.display = 'none'
         document.body.style.overflow = 'auto'
+        document.body.style.overflowX = 'hidden'
       }
     })
   }
