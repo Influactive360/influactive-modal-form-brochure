@@ -12,7 +12,7 @@ window.addEventListener('load', function () {
       })
     })
 
-    modalFormClose.addEventListener('click', function (e) {
+    modalFormClose.addEventListener('click', function () {
       modalForm.style.display = 'none'
       document.body.style.overflow = 'auto'
     })
@@ -37,7 +37,7 @@ window.addEventListener('load', function () {
 
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-          var html = xhr.responseText;
+          const html = xhr.responseText;
           console.log(html);
           modalForm.querySelector('.message').innerHTML = html;
         }
