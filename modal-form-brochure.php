@@ -58,7 +58,7 @@ function add_modal_form(): void
             <div class="message"></div>
         </div>
     </div>
-    <?= ob_get_clean();
+    <?= ob_get_clean()
 }
 
 add_action('wp_footer', 'add_modal_form');
