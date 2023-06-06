@@ -7,6 +7,10 @@ Author: Influactive
 Author URI: https://influactive.com
 */
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 function load_modal_form_scripts(): void
 {
     wp_enqueue_script('modal-form-script', plugin_dir_url(__FILE__) . 'assets/js/modal-form-script.js', array(), '1.0', true);
@@ -42,14 +46,16 @@ function add_modal_form(): void
             <p class="description"><?= $description ?></p>
             <form action="<?= plugin_dir_url(__FILE__) . 'process-form.php' ?>" method="post">
                 <?php foreach ($fields as $field) : ?>
-                    <label for="<?= $field['name'] ?>"><?= $field['label'] ?></label>
-                    <?php if ($field['type'] === 'textarea') : ?>
-                        <textarea id="<?= $field['name'] ?>" name="<?= $field['name'] ?>"
-                                  rows="6" <?= $field['required'] ? 'required' : '' ?>></textarea>
-                    <?php else : ?>
-                        <input type="<?= $field['type'] ?>" id="<?= $field['name'] ?>"
-                               name="<?= $field['name'] ?>" <?= $field['required'] ? 'required' : '' ?>>
-                    <?php endif; ?>
+                    <div class="form-group">
+                        <label for="<?= $field['name'] ?>"><?= $field['label'] ?></label>
+                        <?php if ($field['type'] === 'textarea') : ?>
+                            <textarea id="<?= $field['name'] ?>" name="<?= $field['name'] ?>"
+                                      rows="6" <?= $field['required'] ? 'required' : '' ?>></textarea>
+                        <?php else : ?>
+                            <input type="<?= $field['type'] ?>" id="<?= $field['name'] ?>"
+                                   name="<?= $field['name'] ?>" <?= $field['required'] ? 'required' : '' ?>>
+                        <?php endif; ?>
+                    </div>
                 <?php endforeach ?>
                 <?php if (count($fields) > 0) : ?>
                     <input type="submit" value="<?= $submit_text ?>">
