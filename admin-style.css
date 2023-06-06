@@ -61,3 +61,22 @@
   font-size: 1.5em; /* Adjust as needed */
   text-align: center;
 }
+
+#email-recipient {
+  margin-bottom: 20px;
+}
+
+#email-recipient label {
+  display: block;
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+#email-recipient input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
