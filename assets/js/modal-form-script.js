@@ -1,6 +1,5 @@
 window.addEventListener('load', function () {
   const brochureLinks = document.querySelectorAll('a[href*="#brochure"]')
-  console.log(brochureLinks)
   const modalForm = document.querySelector('#modal-form')
   const modalFormClose = document.querySelector('#modal-form-close')
   let file // variable for storing the file URL
@@ -26,7 +25,6 @@ window.addEventListener('load', function () {
             // Check if we have a file parameter
             if (params[0] === 'file') {
               file = params[1]
-              console.log(file)
             }
           }
         }
