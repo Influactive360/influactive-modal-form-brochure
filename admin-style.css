@@ -41,6 +41,7 @@
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
+  max-width: 100%;
 }
 
 #form-fields .field .delete-field {
@@ -68,15 +69,44 @@
 
 #email-recipient label {
   display: block;
-  font-size: 1.2em;
-  color: #333;
+  margin-top: 20px;
   margin-bottom: 10px;
+  font-weight: 600;
+  color: #32373c;
+  font-size: 13px;
 }
 
 #email-recipient input {
   width: 100%;
   padding: 10px;
-  font-size: 1em;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+}
+
+#recipient-fields {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+#recipient-fields label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #32373c;
+  font-size: 13px;
+}
+
+#recipient-fields select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  max-width: 100%;
+}
+
+#recipient-fields select:focus {
+  border-color: #007cba;
+  box-shadow: 0 0 0 1px #007cba;
+  outline: none;
 }
