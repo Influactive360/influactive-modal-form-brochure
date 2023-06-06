@@ -1,4 +1,9 @@
 <?php
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 // load wordpress environment
 if (!isset($GLOBALS['wpdb'])) {
     require_once('../../wordpress/wp-load.php');
