@@ -116,7 +116,7 @@ function modal_form_fields_callback(): void
         <label for="modal_form_title">Form Title:</label>
         <input id="modal_form_title" type="text" name="modal_form_title" value="<?= esc_attr($form_title ?? 'Do you want to download this product sheet?') ?>">
         <label for="modal_form_description">Form Description:</label>
-        <input id="modal_form_description" type="text" name="modal_form_description" value="<?= esc_attr($form_description ?? 'In order to receive your product sheet, please fill in your information below, we will send you a link by email to download it.') ?>">
+        <textarea id="modal_form_description" name="modal_form_description" rows="6"><?= esc_attr($form_description ?? 'In order to receive your product sheet, please fill in your information below, we will send you a link by email to download it.') ?></textarea>
         <label for="modal_form_submit_text">Submit Button Text:</label>
         <input id="modal_form_submit_text" type="text" name="modal_form_submit_text" value="<?= esc_attr($form_submit_text ?? 'Submit') ?>">
     </div>
