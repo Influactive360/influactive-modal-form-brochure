@@ -8,6 +8,8 @@ $possible_paths = [
 
 $base_path = __DIR__;
 
+var_dump($base_path);
+
 foreach ($possible_paths as $possible_path) {
     if (file_exists($base_path . $possible_path)) {
         require_once($base_path . $possible_path);
