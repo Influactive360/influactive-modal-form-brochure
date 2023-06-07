@@ -8,12 +8,11 @@ html body:not(.wp-admin) div.modal-form {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
-  padding-top: 60px;
 }
 
 html body:not(.wp-admin) div.modal-form .modal-content {
   background-color: #fefefe;
-  margin: 5% auto 15% auto;
+  margin: 5% auto 5% auto;
   border: 1px solid #888;
   width: 80%;
 }
