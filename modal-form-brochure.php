@@ -128,38 +128,38 @@ function modal_form_fields_callback(): void
     <div class="columns-brochure">
         <div class="column-one">
             <div id="content-edit">
-                <label for="modal_form_title">Form Title:</label>
+                <label for="modal_form_title"><?= __('Form Title:', 'modal-form-brochure') ?></label>
                 <input id="modal_form_title" type="text" name="modal_form_title"
                        value="<?= esc_attr($form_title ?? 'Do you want to download this product sheet?') ?>">
-                <label for="modal_form_description">Form Description:</label>
+                <label for="modal_form_description"><?= __('Form Description:', 'modal-form-brochure') ?></label>
                 <textarea id="modal_form_description" name="modal_form_description"
                           rows="6"><?= esc_attr($form_description ?? 'In order to receive your product sheet, please fill in your information below, we will send you a link by email to download it.') ?></textarea>
-                <label for="modal_form_submit_text">Submit Button Text:</label>
+                <label for="modal_form_submit_text"><?= __('Submit Button Text:', 'modal-form-brochure') ?></label>
                 <input id="modal_form_submit_text" type="text" name="modal_form_submit_text"
                        value="<?= esc_attr($form_submit_text ?? 'Submit') ?>">
-                <label for="modal_form_head_email">Email text header</label>
+                <label for="modal_form_head_email"><?= __('Email text header', 'modal-form-brochure') ?></label>
                 <textarea id="modal_form_head_email"
                           name="modal_form_head_email"><?= esc_attr($head_email ?? '') ?></textarea>
-                <label for="modal_form_footer_email">Email text footer</label>
+                <label for="modal_form_footer_email"><?= __('Email text footer', 'modal-form-brochure') ?></label>
                 <textarea id="modal_form_footer_email"
                           name="modal_form_footer_email"><?= esc_attr($footer_email ?? '') ?></textarea>
             </div>
             <div id="recipient-fields">
-                <label for="email_field">User Email Field:</label>
+                <label for="email_field"><?= __('User Email Field:', 'modal-form-brochure') ?></label>
                 <select id="email_field" name="modal_form_email_field">
                     <?php foreach ($form_fields as $field) : ?>
                         <option
                             value="<?= $field['name'] ?>" <?= $field['name'] === $email_field ? 'selected' : '' ?>><?= $field['label'] ?></option>
                     <?php endforeach; ?>
                 </select>
-                <label for="name_field">User Name Field:</label>
+                <label for="name_field"><?= __('User Name Field:', 'modal-form-brochure') ?></label>
                 <select id="name_field" name="modal_form_name_field">
                     <?php foreach ($form_fields as $field) : ?>
                         <option
                             value="<?= $field['name'] ?>" <?= $field['name'] === $name_field ? 'selected' : '' ?>><?= $field['label'] ?></option>
                     <?php endforeach; ?>
                 </select>
-                <label for="rgpd_field">RGPD Field:</label>
+                <label for="rgpd_field"><?= __('RGPD Field:', 'modal-form-brochure') ?></label>
                 <select id="rgpd_field" name="modal_form_rgpd_field">
                     <?php foreach ($form_fields as $field) :
                         if ($field['type'] !== 'checkbox') {
@@ -172,7 +172,7 @@ function modal_form_fields_callback(): void
                 </select>
             </div>
             <div id="email-recipient">
-                <label for="email_recipient">Admin Email Recipient:</label>
+                <label for="email_recipient"><?= __('Admin Email Recipient:', 'modal-form-brochure') ?></label>
                 <input id="email_recipient" type="text" name="modal_form_email_recipient"
                        value="<?= esc_attr($email_recipient) ?>">
             </div>
@@ -182,35 +182,44 @@ function modal_form_fields_callback(): void
                 <?php if (is_array($form_fields)) { ?>
                     <?php foreach ($form_fields as $field) : ?>
                         <div class="field">
-                            <label for="type_<?= $field['name'] ?>">Type:</label>
+                            <label for="type_<?= $field['name'] ?>"><?= __('Type:', 'modal-form-brochure') ?></label>
                             <select id="type_<?= $field['name'] ?>" name="modal_form_fields[field_type][]">
-                                <option value="text" <?= $field['type'] === 'text' ? 'selected' : '' ?>>Text</option>
-                                <option value="email" <?= $field['type'] === 'email' ? 'selected' : '' ?>>Email</option>
-                                <option value="number" <?= $field['type'] === 'number' ? 'selected' : '' ?>>Number
+                                <option
+                                    value="text" <?= $field['type'] === 'text' ? 'selected' : '' ?>><?= __('Text', 'modal-form-brochure') ?></option>
+                                <option
+                                    value="email" <?= $field['type'] === 'email' ? 'selected' : '' ?>><?= __('Email', 'modal-form-brochure') ?></option>
+                                <option
+                                    value="number" <?= $field['type'] === 'number' ? 'selected' : '' ?>><?= __('Number', 'modal-form-brochure') ?>
                                 </option>
-                                <option value="date" <?= $field['type'] === 'date' ? 'selected' : '' ?>>Date</option>
-                                <option value="checkbox" <?= $field['type'] === 'checkbox' ? 'selected' : '' ?>>Checkbox
+                                <option
+                                    value="date" <?= $field['type'] === 'date' ? 'selected' : '' ?>><?= __('Date', 'modal-form-brochure') ?></option>
+                                <option
+                                    value="checkbox" <?= $field['type'] === 'checkbox' ? 'selected' : '' ?>><?= __('Checkbox', 'modal-form-brochure') ?>
                                 </option>
-                                <option value="radio" <?= $field['type'] === 'radio' ? 'selected' : '' ?>>Radio</option>
-                                <option value="textarea" <?= $field['type'] === 'textarea' ? 'selected' : '' ?>>Textarea
+                                <option
+                                    value="radio" <?= $field['type'] === 'radio' ? 'selected' : '' ?>><?= __('Radio', 'modal-form-brochure') ?></option>
+                                <option
+                                    value="textarea" <?= $field['type'] === 'textarea' ? 'selected' : '' ?>><?= __('Textarea', 'modal-form-brochure') ?>
                                 </option>
                             </select>
-                            <label for="label_<?= $field['name'] ?>">Label:</label>
+                            <label for="label_<?= $field['name'] ?>"><?= __('Label:', 'modal-form-brochure') ?></label>
                             <input id="label_<?= $field['name'] ?>" type="text" name="modal_form_fields[field_label][]"
                                    value="<?= esc_attr($field['label'] ?? '') ?>">
-                            <label for="name_<?= $field['name'] ?>">Name:</label>
+                            <label for="name_<?= $field['name'] ?>"><?= __('Name:', 'modal-form-brochure') ?></label>
                             <input id="name_<?= $field['name'] ?>" type="text" name="modal_form_fields[field_name][]"
                                    value="<?= esc_attr($field['name'] ?? '') ?>">
                             <p><strong>Required:</strong></p>
                             <input id="required_yes_<?= $field['name'] ?>" type="radio"
                                    name="modal_form_fields[field_required][<?= $field['name'] ?>]" <?= $field['required'] === 'yes' ? 'checked' : '' ?>
                                    value="yes">
-                            <label for="required_yes_<?= $field['name'] ?>">Yes</label>
+                            <label
+                                for="required_yes_<?= $field['name'] ?>"><?= __('Yes', 'modal-form-brochure') ?></label>
                             <input id="required_no_<?= $field['name'] ?>" type="radio"
                                    name="modal_form_fields[field_required][<?= $field['name'] ?>]" <?= $field['required'] === 'no' ? 'checked' : '' ?>
                                    value="no">
-                            <label for="required_no_<?= $field['name'] ?>">No</label>
-                            <?php submit_button('Delete', 'delete-field', 'delete-field', false, array('data-id' => $field['name'])); ?>
+                            <label
+                                for="required_no_<?= $field['name'] ?>"><?= __('No', 'modal-form-brochure') ?></label>
+                            <?php submit_button(__('Delete', 'modal-form-brochure'), 'delete-field', 'delete-field', false, array('data-id' => $field['name'])); ?>
                         </div>
                     <?php endforeach; ?>
                 <?php } ?>
@@ -265,7 +274,7 @@ function modal_form_options_validate($input): array
 function add_action_links($links): array
 {
     $mylinks = array(
-        '<a href="' . admin_url('options-general.php?page=modal-form-options') . '">Settings</a>',
+        '<a href="' . admin_url('options-general.php?page=modal-form-options') . '">' . __("Settings", "modal-form-brochure") . '</a>',
     );
     return array_merge($links, $mylinks);
 }

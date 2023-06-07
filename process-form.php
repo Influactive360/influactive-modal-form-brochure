@@ -14,8 +14,8 @@ function send_form_email($data): void
     $footer_email = get_option('modal_form_footer_email', 'Goodbye.');
     $to = $data[$email_field];
     $name = $data[$name_field];
-    $subject_admin = 'New Brochure Request from ' . $name;
-    $subject = 'Download your brochure';
+    $subject_admin = __('New Brochure Request from', 'modal-form-brochure') . " $name";
+    $subject = __('Download your brochure', 'modal-form-brochure');
 
     $message = $head_email . '<br><br>';
     $message_admin = '';
@@ -39,15 +39,15 @@ function send_form_email($data): void
     $file_id = $data['file'];
     $file_url = wp_get_attachment_url($file_id);
     $file_name = basename(get_attached_file($file_id)) ?? '';
-    $message .= '<a href="' . $file_url . '">Download your brochure ' . $file_name . '</a><br><br>';
-    $message_admin .= '<br><a href="' . $file_url . '">File: ' . $file_name . '</a><br><br>';
+    $message .= '<a href="' . $file_url . '">' . __("Download your brochure", "modal-form-brochure") . ' ' . $file_name . '</a><br><br>';
+    $message_admin .= '<br><a href="' . $file_url . '">' . __("File:", "modal-form-brochure") . ' ' . $file_name . ' </a><br><br> ';
 
     $message .= $footer_email;
     $error = '';
-    if (!wp_mail($to, $subject, $message, ['Content-Type: text/html; charset=UTF-8', 'From: ' . $to_admin])) {
+    if (!wp_mail($to, $subject, $message, ['Content - Type: text / html; charset = UTF - 8', 'From: ' . $to_admin])) {
         $error .= "Email to user error<br>";
     }
-    if (!wp_mail($to_admin, $subject_admin, $message_admin, ['Content-Type: text/html; charset=UTF-8', 'From: ' . $to_admin])) {
+    if (!wp_mail($to_admin, $subject_admin, $message_admin, ['Content - Type: text / html; charset = UTF - 8', 'From: ' . $to_admin])) {
         $error .= "Email to admin error<br>";
     }
     if ($error === '') {
