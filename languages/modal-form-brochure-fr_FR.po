@@ -95,8 +95,24 @@ msgstr "Supprimer"
 
 #: modal-form-brochure.php:2227
 msgid "Add Field"
-msgstr "Ajouter un champ"
+msgstr "Ajouter le champ"
 
 #: modal-form-brochure.php:277
 msgid "Settings"
 msgstr "Paramètres"
+
+#: process-form.php:17
+msgid "New Brochure Request from"
+msgstr "Nouvelle demande de brochure de"
+
+#: process-form.php:18 process-form.php:42
+msgid "Download your brochure"
+msgstr "Téléchargez votre plaquette"
+
+#: process-form.php:43
+msgid "File:"
+msgstr "Fichier :"
+
+#: process-form.php:54
+msgid "Email sent successfully"
+msgstr "E-mail envoyé avec succès"
