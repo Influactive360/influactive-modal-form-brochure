@@ -47,7 +47,8 @@ function add_modal_form(): void
             <form action="<?= plugin_dir_url(__FILE__) . 'process-form.php' ?>" method="post">
                 <?php foreach ($fields as $field) : ?>
                     <div class="form-group" data-type="<?= $field['type'] ?>">
-                        <label for="<?= $field['name'] ?>" data-type="<?= $field['type'] ?>"><?= $field['label'] ?></label>
+                        <label for="<?= $field['name'] ?>"
+                               data-type="<?= $field['type'] ?>"><?= $field['label'] ?></label>
                         <?php if ($field['type'] === 'textarea') : ?>
                             <textarea id="<?= $field['name'] ?>" name="<?= $field['name'] ?>"
                                       rows="6" <?= $field['required'] ? 'required' : '' ?>></textarea>
@@ -104,6 +105,8 @@ function modal_form_settings_init(): void
     register_setting('modal_form_options', 'modal_form_email_field');
     register_setting('modal_form_options', 'modal_form_name_field');
     register_setting('modal_form_options', 'modal_form_rgpd_field');
+    register_setting('modal_form_options', 'modal_form_head_email', '');
+    register_setting('modal_form_options', 'modal_form_footer_email', '');
     add_settings_section('modal_form_main', 'Main Settings', 'modal_form_fields_callback', 'modal-form-options');
 }
 
@@ -119,6 +122,8 @@ function modal_form_fields_callback(): void
     $email_field = get_option('modal_form_email_field', get_bloginfo('admin_email'));
     $name_field = get_option('modal_form_name_field', 'Name');
     $rgpd = get_option('modal_form_rgpd_field', 'I agree to receive emails from this website');
+    $head_email = get_option('modal_form_head_email', 'Hello,');
+    $footer_email = get_option('modal_form_footer_email', 'Goodbye.');
     ?>
     <div class="columns-brochure">
         <div class="column-one">
@@ -132,6 +137,12 @@ function modal_form_fields_callback(): void
                 <label for="modal_form_submit_text">Submit Button Text:</label>
                 <input id="modal_form_submit_text" type="text" name="modal_form_submit_text"
                        value="<?= esc_attr($form_submit_text ?? 'Submit') ?>">
+                <label for="modal_form_head_email">Email text header</label>
+                <textarea id="modal_form_head_email"
+                          name="modal_form_head_email"><?= esc_attr($head_email ?? '') ?></textarea>
+                <label for="modal_form_footer_email">Email text footer</label>
+                <textarea id="modal_form_footer_email"
+                          name="modal_form_footer_email"><?= esc_attr($footer_email ?? '') ?></textarea>
             </div>
             <div id="recipient-fields">
                 <label for="email_field">User Email Field:</label>
@@ -141,7 +152,6 @@ function modal_form_fields_callback(): void
                             value="<?= $field['name'] ?>" <?= $field['name'] === $email_field ? 'selected' : '' ?>><?= $field['label'] ?></option>
                     <?php endforeach; ?>
                 </select>
-
                 <label for="name_field">User Name Field:</label>
                 <select id="name_field" name="modal_form_name_field">
                     <?php foreach ($form_fields as $field) : ?>
