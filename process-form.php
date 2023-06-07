@@ -1,20 +1,5 @@
 <?php
 
-// Getting an absolute path to the directory.
-$absolute_path = __DIR__;
-
-while( ! file_exists( $absolute_path . "/wp-load.php" ) ) {
-    $absolute_path = dirname( $absolute_path );
-    if( $absolute_path === "/" ) {
-        // Avoid the root directory.
-        exit;
-    }
-}
-
-// Path to wp-load.php file.
-require_once( $absolute_path . "/wp-load.php" );
-
-
 function send_form_email($data): void
 {
     $to_admin = get_option('modal_form_email_recipient', get_bloginfo('admin_email')); // Replace with your email address
