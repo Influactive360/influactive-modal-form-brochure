@@ -1,28 +1,9 @@
 <?php
 
-
-function find_wordpress_base_path(): ?string
-{
-    $dir = __DIR__;
-    do {
-        // Check if wp-load.php exists in this dir
-        if (file_exists($dir . "/wp-load.php")) {
-            return $dir;
-        }
-    } while ($dir = "$dir/..");
-    return null;
+if ( ! isset( $GLOBALS['wpdb'] ) ) {
+    $path = preg_replace( '/wp-content(?!.*wp-content).*/', '', __DIR__ );
+    require_once( $path . 'wp-load.php' );
 }
-
-$wp_base_path = find_wordpress_base_path();
-
-echo $wp_base_path;
-
-if ($wp_base_path === null) {
-    echo 'Could not find WordPress base path.';
-    exit;
-}
-
-require($wp_base_path . "/wp-load.php");
 
 function send_form_email($data): void
 {
