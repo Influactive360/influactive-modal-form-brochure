@@ -1,10 +1,18 @@
 <?php
 
-// load wordpress environment
-if(!isset($GLOBALS['wpdb'])){
-    $path = preg_replace( '/wp-content(?!.*wp-content).*/', '', __DIR__ );
-    require_once( $path . 'wp-load.php' );
+// Getting an absolute path to the directory.
+$absolute_path = __DIR__;
+
+while( ! file_exists( $absolute_path . "/wp-load.php" ) ) {
+    $absolute_path = dirname( $absolute_path );
+    if( $absolute_path === "/" ) {
+        // Avoid the root directory.
+        exit;
+    }
 }
+
+// Path to wp-load.php file.
+require_once( $absolute_path . "/wp-load.php" );
 
 
 function send_form_email($data): void
