@@ -46,8 +46,6 @@
 
 .submit, #submit {
   display: block;
-  width: 200px;
-  height: 50px;
   margin: 20px auto 0;
   font-size: 1.5em;
   text-align: center;
