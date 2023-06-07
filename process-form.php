@@ -55,10 +55,10 @@ function send_form_email($data): void
 
     $message .= $footer_email;
     $error = '';
-    if (!wp_mail($to, $subject, $message, ['Content - Type: text / html; charset = UTF - 8', 'From: ' . $to_admin])) {
+    if (!wp_mail($to, $subject, $message, ['Content-Type: text/html; charset=UTF-8', 'From:' . $to_admin])) {
         $error .= "Email to user error<br>";
     }
-    if (!wp_mail($to_admin, $subject_admin, $message_admin, ['Content - Type: text / html; charset = UTF - 8', 'From: ' . $to_admin])) {
+    if (!wp_mail($to_admin, $subject_admin, $message_admin, ['Content-Type: text/html; charset=UTF-8', 'From:' . $to_admin])) {
         $error .= "Email to admin error<br>";
     }
     if ($error === '') {
