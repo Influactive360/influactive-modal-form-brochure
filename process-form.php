@@ -1,8 +1,18 @@
 <?php
 
-if ( ! isset( $GLOBALS['wpdb'] ) ) {
-    $path = preg_replace( '/wp-content(?!.*wp-content).*/', '', __DIR__ );
-    require_once( $path . 'wp-load.php' );
+$possible_paths = [
+    '/wp-load.php', // WordPress standard
+    '/wordpress/wp-load.php', // WordPlate
+    '/wp/wp-load.php', // Radicle
+];
+
+$base_path = __DIR__;
+
+foreach ($possible_paths as $possible_path) {
+    if (file_exists($base_path . $possible_path)) {
+        require_once($base_path . $possible_path);
+        break;
+    }
 }
 
 function send_form_email($data): void
