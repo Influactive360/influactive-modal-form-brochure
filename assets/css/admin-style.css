@@ -46,6 +46,7 @@
 
 .submit, #submit {
   display: block;
+  padding: 10px 20px;
   margin: 20px auto 0;
   font-size: 1.5em;
   text-align: center;
