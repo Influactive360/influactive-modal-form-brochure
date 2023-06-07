@@ -1,8 +1,11 @@
 <?php
 
-if ( ! isset( $GLOBALS['wpdb'] ) ) {
-    $path = preg_replace( '/wp-content(?!.*wp-content).*/', '', __DIR__ );
-    require_once( $path . 'wp-load.php' );
+if (!isset($GLOBALS['wpdb'])) {
+    // Get the path to the WordPress base directory
+    $path = preg_replace('/(\/wp-content\/).*/', '', __DIR__);
+
+    // Include wp-load.php
+    require_once($path . 'wp-load.php');
 }
 
 function send_form_email($data): void
