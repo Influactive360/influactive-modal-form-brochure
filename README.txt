@@ -1,23 +1,18 @@
-# Modal Form Brochure
+=== Modal Form Brochure ===
+Contributors: *your_username_here*
+Donate link: https://influactive.com
+Tags: modal, form, brochure
+Requires at least: *minimum_wp_version*
+Tested up to: *latest_tested_wp_version*
+Stable tag: 1.0
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-## Description
+A simple plugin that displays a modal with a form when the user clicks on a link with the ID #brochure and a parameter ?file=FILE_ID.
+
+== Description ==
 
 Modal Form Brochure is a simple plugin that displays a modal with a form when the user clicks on a link with the ID `#brochure` and a parameter `?file=FILE_ID`.
-
-## Author
-
-Influactive ([https://influactive.com](https://influactive.com))
-
-## Version
-
-1.0
-
-## Installation
-
-1. Download the plugin from the WordPress plugin directory, or upload the files directly to your server via FTP.
-2. Activate the plugin through the 'Plugins' tab in your WordPress dashboard.
-
-## Usage
 
 Once the plugin is activated, you can configure the modal form by going to the `Settings` tab then `Modal Form Options`.
 
@@ -33,12 +28,17 @@ You can configure the following fields:
 - Email Text Header: The text at the top of the email sent to the user.
 - Email Text Footer: The text at the bottom of the email sent to the user.
 
-You can add, modify, and delete form fields in the right column.
+== Installation ==
 
-## Developers
+1. Download the plugin from the WordPress plugin directory, or upload the files directly to your server via FTP.
+2. Activate the plugin through the 'Plugins' tab in your WordPress dashboard.
 
-If you would like to contribute to this plugin, please contact us at [https://influactive.com](https://influactive.com)
+== Frequently Asked Questions ==
+*Add your FAQs here*
 
-## License
+== Screenshots ==
+*Include your screenshots here*
 
-This plugin is licensed under the GPL-2.0+ license.
+== Changelog ==
+= 1.0 =
+* Initial release
