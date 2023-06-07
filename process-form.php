@@ -15,6 +15,8 @@ function find_wordpress_base_path(): ?string
 
 $wp_base_path = find_wordpress_base_path();
 
+echo $wp_base_path;
+
 if ($wp_base_path === null) {
     echo 'Could not find WordPress base path.';
     exit;
