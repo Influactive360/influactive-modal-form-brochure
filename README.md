@@ -2,7 +2,7 @@
 
 ## Description
 
-Modal Form Brochure is a simple plugin that displays a modal with a form when the user clicks on a link with the ID `#brochure`.
+Modal Form Brochure is a simple plugin that displays a modal with a form when the user clicks on a link with the ID `#brochure` and a parameter `?file=FILEID`.
 
 ## Author
 

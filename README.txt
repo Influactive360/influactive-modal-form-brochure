@@ -1,12 +1,13 @@
 === Modal Form Brochure ===
-Contributors: *your_username_here*
+Contributors: agreuzard
 Donate link: https://influactive.com
 Tags: modal, form, brochure
-Requires at least: *minimum_wp_version*
-Tested up to: *latest_tested_wp_version*
+Requires at least: 5.2
+Tested up to: 6.2
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Requires PHP: 8.0
 
 A simple plugin that displays a modal with a form when the user clicks on a link with the ID #brochure and a parameter ?file=FILE_ID.
 
@@ -34,10 +35,12 @@ You can configure the following fields:
 2. Activate the plugin through the 'Plugins' tab in your WordPress dashboard.
 
 == Frequently Asked Questions ==
-*Add your FAQs here*
+= How to use? =
+Add a link with #brochure and a parameter ?file= with the file ID. The result: #brochure?file=12
 
 == Screenshots ==
-*Include your screenshots here*
+1. Settings
+![Settings page](https://i.ibb.co/XzMdHbM/plugin-settings.png)
 
 == Changelog ==
 = 1.0 =
