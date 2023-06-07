@@ -6,9 +6,8 @@ $possible_paths = [
     '/wp/wp-load.php', // Radicle
 ];
 
-$base_path = __DIR__;
-
-var_dump($base_path);
+// Try to get the document root from the server
+$base_path = $_SERVER['DOCUMENT_ROOT'] ?? '';
 
 foreach ($possible_paths as $possible_path) {
     if (file_exists($base_path . $possible_path)) {
