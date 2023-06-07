@@ -86,7 +86,7 @@ function modal_form_options_page(): void
             <?php
             settings_fields('modal_form_options');
             do_settings_sections('modal-form-options');
-            submit_button('Save Settings');
+            submit_button(__('Save Settings', 'modal-form-brochure'));
             ?>
         </form>
     </div>
@@ -208,7 +208,7 @@ function modal_form_fields_callback(): void
                             <label for="name_<?= $field['name'] ?>"><?= __('Name:', 'modal-form-brochure') ?></label>
                             <input id="name_<?= $field['name'] ?>" type="text" name="modal_form_fields[field_name][]"
                                    value="<?= esc_attr($field['name'] ?? '') ?>">
-                            <p><strong>Required:</strong></p>
+                            <p><strong><?= __('Required', 'modal-form-brochure') ?>:</strong></p>
                             <input id="required_yes_<?= $field['name'] ?>" type="radio"
                                    name="modal_form_fields[field_required][<?= $field['name'] ?>]" <?= $field['required'] === 'yes' ? 'checked' : '' ?>
                                    value="yes">

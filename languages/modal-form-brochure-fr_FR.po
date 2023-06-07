@@ -12,11 +12,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.3.1\n"
 
-#: modal-form-brochure.php:73
+#: modal-form-brochure.php:133
 msgid "Do you want to download this product sheet?"
 msgstr "Vous souhaitez télécharger cette fiche produit ?"
 
-#: modal-form-brochure.php:74
+#: modal-form-brochure.php:136
 msgid ""
 "In order to receive your product sheet, please fill in your information "
 "below, we will send you a link by email to download it."
@@ -25,74 +25,78 @@ msgstr ""
 "informations ci-dessous, nous vous enverrons un lien par email pour la "
 "télécharger."
 
-#: modal-form-brochure.php:75
+#: modal-form-brochure.php:139
 msgid "Submit"
 msgstr "Soumettre"
 
-#: modal-form-brochure.php:139
+#: modal-form-brochure.php:89
+msgid "Save Settings"
+msgstr "Enregistrer les paramètres"
+
+#: modal-form-brochure.php:211
+msgid "Required"
+msgstr "Requis"
+
+#: modal-form-brochure.php:131
 msgid "Form Title:"
 msgstr "Titre du formulaire :"
 
-#: modal-form-brochure.php:146
+#: modal-form-brochure.php:134
 msgid "Form Description:"
 msgstr "Description du formulaire :"
 
-#: modal-form-brochure.php:153
+#: modal-form-brochure.php:137
 msgid "Submit Button Text:"
 msgstr "Envoyer le texte du bouton :"
 
-#: modal-form-brochure.php:160
+#: modal-form-brochure.php:140
 msgid "Email text header"
 msgstr "En-tête du texte de l’e-mail"
 
-#: modal-form-brochure.php:165
+#: modal-form-brochure.php:143
 msgid "Email text footer"
 msgstr "Pied de page du texte de l’e-mail"
 
-#: modal-form-brochure.php:176
+#: modal-form-brochure.php:148
 msgid "User Email Field:"
 msgstr "Champ d’e-mail de l’utilisateur :"
 
-#: modal-form-brochure.php:185
-msgid "User Name Field:"
-msgstr "Champ Nom d’utilisateur :"
-
-#: modal-form-brochure.php:195
+#: modal-form-brochure.php:162
 msgid "RGPD Field:"
 msgstr "Champ RGPD :"
 
-#: modal-form-brochure.php:213
+#: modal-form-brochure.php:175
 msgid "Admin Email Recipient:"
 msgstr "Destinataire de l’e-mail de l’administrateur :"
 
-#: modal-form-brochure.php:234
+#: modal-form-brochure.php:185
 msgid "Type:"
 msgstr "Type :"
 
-#: modal-form-brochure.php:241
+#: modal-form-brochure.php:205
 msgid "Label:"
-msgstr "Étiqueter:"
+msgstr "Label :"
 
-#: modal-form-brochure.php:245
+#: modal-form-brochure.php:208
 msgid "Name:"
-msgstr "Nom:"
+msgstr "Name :"
 
-#: modal-form-brochure.php:249
+#: modal-form-brochure.php:216
 msgid "Yes"
 msgstr "Oui"
 
-#: modal-form-brochure.php:252
+#: modal-form-brochure.php:221
 msgid "No"
 msgstr "Non"
 
-#: modal-form-brochure.php:255
+#: modal-form-brochure.php:222
 msgid "Delete"
 msgstr "Supprimer"
 
-#: modal-form-brochure.php:263
+#: modal-form-brochure.php:2227
 msgid "Add Field"
 msgstr "Ajouter un champ"
 
-#: modal-form-brochure.php:283
+#: modal-form-brochure.php:277
 msgid "Settings"
 msgstr "Paramètres"
