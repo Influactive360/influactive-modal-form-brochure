@@ -1,5 +1,27 @@
 <?php
 
+
+function find_wordpress_base_path(): ?string
+{
+    $dir = __DIR__;
+    do {
+        // Check if wp-load.php exists in this dir
+        if (file_exists($dir . "/wp-load.php")) {
+            return $dir;
+        }
+    } while ($dir = "$dir/..");
+    return null;
+}
+
+$wp_base_path = find_wordpress_base_path();
+
+if ($wp_base_path === null) {
+    echo 'Could not find WordPress base path.';
+    exit;
+}
+
+require($wp_base_path . "/wp-load.php");
+
 function send_form_email($data): void
 {
     $to_admin = get_option('modal_form_email_recipient', get_bloginfo('admin_email')); // Replace with your email address
