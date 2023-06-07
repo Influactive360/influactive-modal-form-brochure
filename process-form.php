@@ -1,9 +1,11 @@
 <?php
 
 // load wordpress environment
-if (!isset($GLOBALS['wpdb'])) {
-    require_once('../../wordpress/wp-load.php');
+if(!isset($GLOBALS['wpdb'])){
+    $path = preg_replace( '/wp-content(?!.*wp-content).*/', '', __DIR__ );
+    require_once( $path . 'wp-load.php' );
 }
+
 
 function send_form_email($data): void
 {
@@ -51,7 +53,7 @@ function send_form_email($data): void
         $error .= "Email to admin error<br>";
     }
     if ($error === '') {
-        echo "Email sent successfully";
+        echo __("Email sent successfully", "modal-form-brochure");
     } else {
         echo $error;
     }

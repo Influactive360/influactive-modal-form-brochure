@@ -94,3 +94,23 @@ msgstr ""
 #: modal-form-brochure.php:277
 msgid "Settings"
 msgstr ""
+
+#: process-form.php:17
+msgid "New Brochure Request from"
+msgstr ""
+
+#: process-form.php:18
+msgid "Download your brochure"
+msgstr ""
+
+#: process-form.php:42
+msgid "Download your brochure"
+msgstr ""
+
+#: process-form.php:43
+msgid "File:"
+msgstr ""
+
+#: process-form.php:54
+msgid "Email sent successfully"
+msgstr ""
