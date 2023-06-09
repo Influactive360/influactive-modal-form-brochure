@@ -11,8 +11,6 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-var_dump(plugin_dir_url(__FILE__));
-
 function load_modal_form_scripts(): void
 {
     wp_enqueue_script('modal-form-brochure', plugin_dir_url(__FILE__) . 'dist/modal-form-brochure.mjs', array(), '1.0', true);
