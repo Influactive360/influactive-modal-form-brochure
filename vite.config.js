@@ -10,13 +10,13 @@ export default defineConfig({
         lib: {
             entry: `${__dirname}/index.js`,
             name: "Modal Form Brochure",
-            formats: ["es"] // Spécifiez uniquement 'es' pour n'obtenir que le format ESM (.mjs)
+            formats: ["es"]
         },
         rollupOptions: {
             output: {
-                entryFileNames: "[name].mjs", // Spécifiez explicitement .mjs comme extension de sortie
+                entryFileNames: "[name].mjs",
                 chunkFileNames: "[name].mjs",
-                assetFileNames: "[name].[ext]" // Utilisez l'extension d'origine pour les actifs
+                assetFileNames: "[name].[ext]"
             }
         }
     }
