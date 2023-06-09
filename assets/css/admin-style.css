@@ -1,93 +1,93 @@
 /* admin-style.css */
 
 .wrap {
-  margin: 0 2rem;
+    margin: 0 2rem;
 }
 
 .columns-brochure {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  gap: 4rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 4rem;
 }
 
 .column-one, .column-two {
-  flex: 1 1 50%;
+    flex: 1 1 50%;
 }
 
 .field, #content-edit {
-  background-color: #f1f1f1;
-  margin-bottom: 20px;
+    background-color: #f1f1f1;
+    margin-bottom: 20px;
 }
 
 .field label, #content-edit label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .field input[type="text"],
 .field select,
 #content-edit input[type="text"],
 #content-edit textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  max-width: 100%;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    max-width: 100%;
 }
 
 .field .delete-field {
-  display: block;
-  margin-top: 10px;
-  float: right;
+    display: block;
+    margin-top: 10px;
+    float: right;
 }
 
 .submit, #submit {
-  display: block;
-  padding: 10px 20px;
-  margin: 20px auto 0;
-  font-size: 1.5em;
-  text-align: center;
-  line-height: 1.5rem;
+    display: block;
+    padding: 10px 20px;
+    margin: 20px auto 0;
+    font-size: 1.5em;
+    text-align: center;
+    line-height: 1.5rem;
 }
 
 #email-recipient, #recipient-fields {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 #email-recipient label,
 #recipient-fields label {
-  display: block;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-weight: 600;
-  color: #32373c;
-  font-size: 13px;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #32373c;
+    font-size: 13px;
 }
 
 #email-recipient input,
 #recipient-fields select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  max-width: 100%;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    max-width: 100%;
 }
 
 #recipient-fields select:focus {
-  border-color: #007cba;
-  box-shadow: 0 0 0 1px #007cba;
-  outline: none;
+    border-color: #007cba;
+    box-shadow: 0 0 0 1px #007cba;
+    outline: none;
 }
 
 input[type="radio"] {
-  display: inline-block;
-  margin-right: 5px;
+    display: inline-block;
+    margin-right: 5px;
 }
 
 .field input[type="radio"] + label {
-  display: inline-block;
-  margin-right: 20px;
+    display: inline-block;
+    margin-right: 20px;
 }
