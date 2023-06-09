@@ -13,8 +13,8 @@ if (!defined('ABSPATH')) {
 
 function load_modal_form_scripts(): void
 {
-    wp_enqueue_script('modal-form-script', plugin_dir_url(__FILE__) . 'assets/js/modal-form-script.js', array(), '1.0', true);
-    wp_enqueue_style('modal-form-style', plugin_dir_url(__FILE__) . 'assets/css/modal-form-style.css');
+    wp_enqueue_script('modal-form-brochure', plugin_dir_url(__FILE__) . 'dist/modal-form-script.mjs', array(), '1.0', true);
+    wp_enqueue_style('modal-form-brochure', plugin_dir_url(__FILE__) . 'dist/style.css');
 }
 
 add_action('wp_enqueue_scripts', 'load_modal_form_scripts');
@@ -24,8 +24,8 @@ function load_admin_scripts($hook): void
     if ('settings_page_modal-form-options' !== $hook) {
         return;
     }
-    wp_enqueue_script('modal-form-admin', plugin_dir_url(__FILE__) . 'assets/js/admin.js', array(), '1.0', true);
-    wp_enqueue_style('modal-form-admin-style', plugin_dir_url(__FILE__) . 'assets/css/admin-style.css');
+    wp_enqueue_script('modal-form-brochure-admin', plugin_dir_url(__FILE__) . 'assets/js/admin.js', array(), '1.0', true);
+    wp_enqueue_style('modal-form-brochure-admin', plugin_dir_url(__FILE__) . 'assets/css/admin-style.css');
 }
 
 add_action('admin_enqueue_scripts', 'load_admin_scripts');

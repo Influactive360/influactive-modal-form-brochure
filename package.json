@@ -11,9 +11,7 @@
         "vite": "^4.3.9"
     },
     "scripts": {
-        "dev": "vite",
         "build": "vite build",
-        "serve": "vite preview"
     },
     "devDependencies": {
         "@microsoft/eslint-formatter-sarif": "^3.0.0",
