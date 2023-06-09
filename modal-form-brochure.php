@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function load_modal_form_scripts(): void {
-	wp_enqueue_script( 'modal-form-brochure', plugin_dir_url( __FILE__ ) . 'dist/modal-form-script.umd.js', array(), '1.0', true );
+	wp_enqueue_script( 'modal-form-brochure', plugin_dir_url( __FILE__ ) . 'dist/modal-form-script.mjs', array(), '1.0', true );
 	wp_enqueue_style( 'modal-form-brochure', plugin_dir_url( __FILE__ ) . 'dist/style.css' );
 }
 
