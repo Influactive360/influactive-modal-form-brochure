@@ -7,38 +7,72 @@
         "driver": {
           "name": "ESLint",
           "informationUri": "https://eslint.org",
-          "rules": [],
+          "rules": [
+            {
+              "id": "no-undef",
+              "helpUri": "https://eslint.org/docs/latest/rules/no-undef",
+              "properties": {},
+              "shortDescription": {
+                "text": "Disallow the use of undeclared variables unless mentioned in `/*global */` comments"
+              }
+            }
+          ],
           "version": "8.42.0"
         }
       },
       "artifacts": [
         {
           "location": {
-            "uri": "file:///Users/antoine/PhpstormProjects/roth2/public/plugins/modal-form-brochure/.eslintrc.js"
+            "uri": "file:///Users/antoine/PhpstormProjects/modal-plugin/.eslintrc.js"
           }
         },
         {
           "location": {
-            "uri": "file:///Users/antoine/PhpstormProjects/roth2/public/plugins/modal-form-brochure/assets/js/admin.js"
+            "uri": "file:///Users/antoine/PhpstormProjects/modal-plugin/assets/js/admin.js"
           }
         },
         {
           "location": {
-            "uri": "file:///Users/antoine/PhpstormProjects/roth2/public/plugins/modal-form-brochure/assets/js/modal-form-script.js"
+            "uri": "file:///Users/antoine/PhpstormProjects/modal-plugin/assets/js/modal-form-script.js"
           }
         },
         {
           "location": {
-            "uri": "file:///Users/antoine/PhpstormProjects/roth2/public/plugins/modal-form-brochure/index.js"
+            "uri": "file:///Users/antoine/PhpstormProjects/modal-plugin/index.js"
           }
         },
         {
           "location": {
-            "uri": "file:///Users/antoine/PhpstormProjects/roth2/public/plugins/modal-form-brochure/vite.config.js"
+            "uri": "file:///Users/antoine/PhpstormProjects/modal-plugin/vite.config.js"
           }
         }
       ],
-      "results": []
+      "results": [
+        {
+          "level": "error",
+          "message": {
+            "text": "'module' is not defined."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///Users/antoine/PhpstormProjects/modal-plugin/.eslintrc.js",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 7
+                }
+              }
+            }
+          ],
+          "ruleId": "no-undef",
+          "ruleIndex": 0
+        }
+      ]
     }
   ]
 }
