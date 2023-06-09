@@ -3,3 +3,7 @@
 
 # Remove node_modules
 node_modules/
+
+# git and github
+.git/
+.github/
