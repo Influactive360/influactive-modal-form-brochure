@@ -1,3 +1,4 @@
+/*global */
 module.exports = {
     env: {
         browser: true,
@@ -27,6 +28,6 @@ module.exports = {
         ],
         "no-undef": [
             "error"
-        ]
+        ],
     }
 }
