@@ -43,6 +43,8 @@ function send_form_email( $data ): void {
 		if ( $key === 'rgpd' ) {
 			continue;
 		}
+		// transformer les _ en espace
+		$key           = str_replace( '_', ' ', $key );
 		$message_admin .= ucwords( $key ) . ': ' . $value . "<br>\n\r";
 	}
 
