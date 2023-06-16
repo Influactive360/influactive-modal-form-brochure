@@ -22,7 +22,8 @@ function load_admin_scripts( $hook ): void {
 	if ( 'settings_page_modal-form-options' !== $hook ) {
 		return;
 	}
-	wp_enqueue_script( 'modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'assets/js/admin.js', array(), '1.0', true );
+	wp_enqueue_media(); // Ajoutez cette ligne
+	wp_enqueue_script( 'modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'assets/js/admin.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_style( 'modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'assets/css/admin-style.css' );
 }
 
@@ -99,11 +100,13 @@ function modal_form_settings_init(): void {
 	register_setting( 'modal_form_options', 'modal_form_email_recipient' );
 	register_setting( 'modal_form_options', 'modal_form_email_field' );
 	register_setting( 'modal_form_options', 'modal_form_name_field' );
+	register_setting( 'modal_form_options', 'modal_form_name_field' );
 	register_setting( 'modal_form_options', 'modal_form_rgpd_field' );
 	register_setting( 'modal_form_options', 'modal_form_head_email', '' );
 	register_setting( 'modal_form_options', 'modal_form_footer_email', '' );
 	register_setting( 'modal_form_options', 'modal_form_posts', 'modal_posts_select_validate' );
 	register_setting( 'modal_form_options', 'modal_form_pages', 'modal_pages_select_validate' );
+	register_setting( 'modal_form_options', 'modal_form_file_select' );
 	add_settings_section( 'modal_form_main', 'Main Settings', 'modal_form_fields_callback', 'modal-form-options' );
 }
 
@@ -120,6 +123,7 @@ function modal_form_fields_callback(): void {
 	$rgpd             = get_option( 'modal_form_rgpd_field', 'I agree to receive emails from this website' );
 	$head_email       = get_option( 'modal_form_head_email', 'Hello,' );
 	$footer_email     = get_option( 'modal_form_footer_email', 'Goodbye.' );
+	$file             = get_option( 'modal_form_file_select' );
 	?>
     <div class="columns-brochure">
         <div class="column-one">
@@ -140,6 +144,14 @@ function modal_form_fields_callback(): void {
                 <textarea id="modal_form_footer_email"
                           name="modal_form_footer_email"><?= esc_attr( $footer_email ?? '' ) ?></textarea>
             </div>
+
+            <div id="select_file_general_from_library">
+                <label for="modal_form_file_select"><?= __( 'Select File:', 'modal-form-brochure' ) ?></label>
+                <input type="text" id="modal_form_file_select" name="modal_form_file_select" readonly
+                       value="<?= $file ?>">
+                <button type="button" id="upload-button"><?= __( 'Select File', 'modal-form-brochure' ) ?></button>
+            </div>
+
             <div id="content-select">
                 <label for="modal_form_pages"><?= __( 'Select Pages:', 'modal-form-brochure' ) ?></label>
 				<?php
