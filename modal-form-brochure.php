@@ -35,9 +35,19 @@ function add_modal_form(): void {
 	$description = get_option( 'modal_form_description', 'In order to receive your product sheet, please fill in your information below, we will send you a link by email to download it.' );
 	$submit_text = get_option( 'modal_form_submit_text', 'Submit' );
 	$file        = get_option( 'modal_form_file_select', false );
+	$pages       = get_option( 'modal_form_pages', array() );
+	$posts       = get_option( 'modal_form_posts', array() );
+	$display     = "";
+
+	if ( ! empty( $pages['modal_form_pages'] ) || ! empty( $posts['modal_form_posts'] ) ) {
+		if ( ( ! empty( $pages['modal_form_pages'] ) && in_array( get_the_ID(), $pages['modal_form_pages'], true ) ) || ( ! empty( $posts['modal_form_posts'] ) && in_array( get_the_ID(), $posts['modal_form_posts'], true ) ) ) {
+			$display = "style='display: block;'";
+		}
+	}
+
 
 	ob_start(); ?>
-    <div id="modal-form" class="modal-form">
+    <div id="modal-form" class="modal-form" <?= $display ?>>
         <div class="modal-content">
             <span id="modal-form-close" class="close">&times;</span>
             <h2><?= $title ?></h2>
