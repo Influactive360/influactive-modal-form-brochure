@@ -152,7 +152,7 @@ function modal_form_fields_callback(): void {
             </div>
 
             <div id="select_file_general_from_library">
-                <label for="modal_form_file_select"><?= __( 'Select File:', 'modal-form-brochure' ) ?></label>
+                <label for="modal_form_file_select"><?= __( 'Select File to to show a modal at load (also default file to not use ?file=FILEID):', 'modal-form-brochure' ) ?></label>
                 <input type="text" id="modal_form_file_select" name="modal_form_file_select" readonly
                        value="<?= $file ?>">
                 <button type="button" id="upload-button"><?= __( 'Select File', 'modal-form-brochure' ) ?></button>
