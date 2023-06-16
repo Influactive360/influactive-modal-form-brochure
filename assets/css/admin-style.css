@@ -16,12 +16,12 @@
     flex: 1 1 50%;
 }
 
-.field, #content-edit {
+.field, #content-edit, #modal_form_pages, #modal_form_posts {
     background-color: #f1f1f1;
     margin-bottom: 20px;
 }
 
-.field label, #content-edit label {
+.field label, #content-edit label, #modal_form_pages label, #modal_form_posts label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
@@ -30,7 +30,9 @@
 .field input[type="text"],
 .field select,
 #content-edit input[type="text"],
-#content-edit textarea {
+#content-edit textarea,
+#modal_form_pages select,
+#modal_form_posts select {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -53,12 +55,14 @@
     line-height: 1.5rem;
 }
 
-#email-recipient, #recipient-fields {
+#email-recipient, #recipient-fields, #modal_form_pages, #modal_form_posts {
     margin-bottom: 20px;
 }
 
 #email-recipient label,
-#recipient-fields label {
+#recipient-fields label,
+#modal_form_pages label,
+#modal_form_posts label {
     display: block;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -68,7 +72,9 @@
 }
 
 #email-recipient input,
-#recipient-fields select {
+#recipient-fields select,
+#modal_form_pages select,
+#modal_form_posts select {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -76,7 +82,9 @@
     max-width: 100%;
 }
 
-#recipient-fields select:focus {
+#recipient-fields select:focus,
+#modal_form_pages select:focus,
+#modal_form_posts select:focus {
     border-color: #007cba;
     box-shadow: 0 0 0 1px #007cba;
     outline: none;
