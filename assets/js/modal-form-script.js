@@ -36,6 +36,7 @@ window.addEventListener("load", function () {
 
         // on vérifie si modalForm est display block, si oui, on désactive le scroll de body
         if (modalForm.style.display === "block") {
+            console.log("modalForm.style.display === block")
             document.body.style.overflow = "hidden"
         }
 
