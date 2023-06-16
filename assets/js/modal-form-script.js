@@ -5,6 +5,12 @@ window.addEventListener("load", function () {
     let file // variable for storing the file URL
 
     if (brochureLinks && modalForm && modalFormClose) {
+        // Check if modalForm is initially in 'block' display
+        const modalFormStyle = window.getComputedStyle(modalForm)
+        if (modalFormStyle.display === "block") {
+            document.body.style.overflow = "hidden"
+        }
+
         brochureLinks.forEach(function (element) {
             element.addEventListener("click", function (e) {
                 e.preventDefault()
@@ -33,13 +39,6 @@ window.addEventListener("load", function () {
                 document.body.style.overflow = "hidden"
             })
         })
-
-        // on vérifie (après 1 seconde) si modalForm est display block, si oui, on désactive le scroll de body
-        setTimeout(function () {
-            if (modalForm.style.display === "block") {
-                document.body.style.overflow = "hidden"
-            }
-        }, 500)
 
         modalFormClose.addEventListener("click", function () {
             modalForm.style.display = "none"
