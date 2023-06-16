@@ -5,6 +5,7 @@ window.addEventListener("load", function () {
     let file // variable for storing the file URL
 
     // Check if modalForm is initially in 'block' display
+    console.log(modalForm)
     console.log(getComputedStyle(modalForm).display)
     if (modalForm && getComputedStyle(modalForm).display === "block") {
         document.body.style.overflow = "hidden"
