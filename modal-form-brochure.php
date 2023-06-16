@@ -281,7 +281,7 @@ add_action( 'admin_menu', static function () {
 	add_options_page( 'Modal Form Brochure Options', 'Modal Form Options', 'manage_options', 'modal-form-options', 'modal_form_options_page' );
 } );
 
-function modal_form_options_validate( &$input ): array {
+function modal_form_options_validate( $input ): array {
 	// Initialize the new array that will hold the sanitize values
 	$new_input = array();
 
@@ -315,14 +315,14 @@ function modal_form_options_validate( &$input ): array {
 
 		// Validation for pages
 		if ( isset( $input['modal_form_pages'] ) ) {
-			$pages                     = array_map( 'absint', $input['modal_form_pages'] );
-			$input['modal_form_pages'] = array_filter( $pages, 'get_post' );
+			$pages                         = array_map( 'absint', $input['modal_form_pages'] );
+			$new_input['modal_form_pages'] = array_filter( $pages, 'get_post' );
 		}
 
 		// Validation for posts
 		if ( isset( $input['modal_form_posts'] ) ) {
-			$posts                     = array_map( 'absint', $input['modal_form_posts'] );
-			$input['modal_form_posts'] = array_filter( $posts, 'get_post' );
+			$posts                         = array_map( 'absint', $input['modal_form_posts'] );
+			$new_input['modal_form_posts'] = array_filter( $posts, 'get_post' );
 		}
 	}
 
