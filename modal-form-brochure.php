@@ -153,7 +153,7 @@ function modal_form_fields_callback(): void {
             </div>
 
             <div id="content-select">
-                <label for="modal_form_pages"><?= __( 'Select Pages:', 'modal-form-brochure' ) ?></label>
+                <label for="modal_form_pages"><?= __( 'Select Pages to show a modal at load:', 'modal-form-brochure' ) ?></label>
 				<?php
 				// Get selected pages
 				$selected_pages = get_option( 'modal_form_pages' );
@@ -189,7 +189,7 @@ function modal_form_fields_callback(): void {
             </div>
 
             <div id="content-select-posts">
-                <label for="modal_form_posts"><?= __( 'Select Posts:', 'modal-form-brochure' ) ?></label>
+                <label for="modal_form_posts"><?= __( 'Select Posts to show a modal at load:', 'modal-form-brochure' ) ?></label>
 				<?php
 				// Get selected posts
 				$selected_posts = get_option( 'modal_form_posts' );
