@@ -4,12 +4,12 @@ window.addEventListener("load", function () {
     const modalFormClose = document.querySelector("#modal-form-close")
     let file // variable for storing the file URL
 
+    // Check if modalForm is initially in 'block' display
+    if (modalForm && getComputedStyle(modalForm).display === "block") {
+        document.body.style.overflow = "hidden"
+    }
+
     if (brochureLinks && modalForm && modalFormClose) {
-        // Check if modalForm is initially in 'block' display
-        const modalFormStyle = window.getComputedStyle(modalForm)
-        if (modalFormStyle.display === "block") {
-            document.body.style.overflow = "hidden"
-        }
 
         brochureLinks.forEach(function (element) {
             element.addEventListener("click", function (e) {
