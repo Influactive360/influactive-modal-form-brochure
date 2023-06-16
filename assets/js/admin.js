@@ -78,10 +78,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // Extend the wp.media object
         // eslint-disable-next-line no-undef
         mediaUploader = wp.media.frames.file_frame = wp.media({
-            title: "Choose File",
-            button: {
-                text: "Choose File"
-            },
             multiple: false
         })
 
