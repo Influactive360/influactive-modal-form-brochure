@@ -102,8 +102,8 @@ function modal_form_settings_init(): void {
 	register_setting( 'modal_form_options', 'modal_form_rgpd_field' );
 	register_setting( 'modal_form_options', 'modal_form_head_email', '' );
 	register_setting( 'modal_form_options', 'modal_form_footer_email', '' );
-	register_setting( 'modal_form_options', 'modal_form_pages' );
-	register_setting( 'modal_form_options', 'modal_form_posts' );
+	register_setting( 'modal_form_options', 'modal_form_posts', 'modal_posts_select_validate' );
+	register_setting( 'modal_form_options', 'modal_form_pages', 'modal_pages_select_validate' );
 	add_settings_section( 'modal_form_main', 'Main Settings', 'modal_form_fields_callback', 'modal-form-options' );
 }
 
@@ -148,17 +148,34 @@ function modal_form_fields_callback(): void {
 				if ( ! is_array( $selected_pages ) ) {
 					$selected_pages = array();
 				}
-				$args         = array(
-					'name'             => 'modal_form_pages[]',
-					'selected'         => $selected_pages,
-					'echo'             => 0,
-					'show_option_none' => __( '- Select -', 'modal-form-brochure' ),
+				// Query for all posts
+				$args        = array(
+					'post_type'   => 'page',
+					'post_status' => 'publish',
+					'nopaging'    => true,
 				);
-				$pages_select = wp_dropdown_pages( $args );
-				$pages_select = str_replace( '<select', '<select multiple', $pages_select );
-				echo $pages_select;
+				$pages_query = new WP_Query( $args );
+				if ( ! isset( $selected_pages['modal_form_pages'] ) ) {
+					$selected_pages['modal_form_pages'] = array();
+				}
 				?>
+                <select id="modal_form_pages" name="modal_form_pages[]" multiple>
+                    <option value=""><?= __( '- Select -', 'modal-form-brochure' ) ?></option>
+					<?php
+					if ( $pages_query->have_posts() ) {
+						while ( $pages_query->have_posts() ) {
+							$pages_query->the_post();
+							$selected = in_array( get_the_ID(), $selected_pages['modal_form_pages'], true ) ? 'selected' : '';
+							?>
+                            <option value="<?php the_ID(); ?>" <?= $selected ?>><?php the_title(); ?></option>
+							<?php
+						}
+						wp_reset_postdata();
+					}
+					?>
+                </select>
             </div>
+
             <div id="content-select-posts">
                 <label for="modal_form_posts"><?= __( 'Select Posts:', 'modal-form-brochure' ) ?></label>
 				<?php
@@ -174,6 +191,9 @@ function modal_form_fields_callback(): void {
 					'nopaging'    => true,
 				);
 				$posts_query = new WP_Query( $args );
+				if ( ! isset( $selected_pages['modal_form_posts'] ) ) {
+					$selected_pages['modal_form_posts'] = array();
+				}
 				?>
                 <select id="modal_form_posts" name="modal_form_posts[]" multiple>
                     <option value=""><?= __( '- Select -', 'modal-form-brochure' ) ?></option>
@@ -181,7 +201,7 @@ function modal_form_fields_callback(): void {
 					if ( $posts_query->have_posts() ) {
 						while ( $posts_query->have_posts() ) {
 							$posts_query->the_post();
-							$selected = in_array( get_the_ID(), $selected_posts, true ) ? 'selected' : '';
+							$selected = in_array( get_the_ID(), $selected_posts['modal_form_posts'], true ) ? 'selected' : '';
 							?>
                             <option value="<?php the_ID(); ?>" <?= $selected ?>><?php the_title(); ?></option>
 							<?php
@@ -312,18 +332,32 @@ function modal_form_options_validate( $input ): array {
 		if ( isset( $input['modal_form_rgpd_field'] ) ) {
 			$new_input['modal_form_rgpd_field'] = sanitize_title( $input['modal_form_rgpd_field'] );
 		}
+	}
 
-		// Validation for pages
-		if ( isset( $input['modal_form_pages'] ) ) {
-			$pages                         = array_map( 'absint', $input['modal_form_pages'] );
-			$new_input['modal_form_pages'] = array_filter( $pages, 'get_post' );
-		}
+	return $new_input;
+}
 
+function modal_posts_select_validate( $input ): array {
+	// Initialize the new array that will hold the sanitize values
+	$new_input = array();
+
+	if ( is_array( $input ) ) {
 		// Validation for posts
-		if ( isset( $input['modal_form_posts'] ) ) {
-			$posts                         = array_map( 'absint', $input['modal_form_posts'] );
-			$new_input['modal_form_posts'] = array_filter( $posts, 'get_post' );
-		}
+		$posts                         = array_map( 'absint', $input );
+		$new_input['modal_form_posts'] = array_filter( $posts, 'get_post' );
+	}
+
+	return $new_input;
+}
+
+function modal_pages_select_validate( $input ): array {
+	// Initialize the new array that will hold the sanitize values
+	$new_input = array();
+
+	if ( is_array( $input ) ) {
+		// Validation for pages
+		$pages                         = array_map( 'absint', $input );
+		$new_input['modal_form_pages'] = array_filter( $pages, 'get_post' );
 	}
 
 	return $new_input;
