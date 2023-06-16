@@ -45,3 +45,6 @@ Add a link with #brochure and a parameter ?file= with the file ID. The result: #
 == Changelog ==
 = 1.0 =
 * Initial release
+
+= 1.1 =
+* ADD modal and default file to load modal on pages/posts at load
