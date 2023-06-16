@@ -64,6 +64,7 @@ window.addEventListener("load", function () {
 
             // Add the file URL to the form data
             if (file) {
+                formData.delete("file")
                 formData.append("file", file)
             }
 
