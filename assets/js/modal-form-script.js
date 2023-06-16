@@ -39,7 +39,7 @@ window.addEventListener("load", function () {
             if (modalForm.style.display === "block") {
                 document.body.style.overflow = "hidden"
             }
-        }, 1000)
+        }, 500)
 
         modalFormClose.addEventListener("click", function () {
             modalForm.style.display = "none"
