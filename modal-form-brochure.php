@@ -34,15 +34,31 @@ function add_modal_form(): void {
 	$title       = get_option( 'modal_form_title', 'Do you want to download this product sheet?' );
 	$description = get_option( 'modal_form_description', 'In order to receive your product sheet, please fill in your information below, we will send you a link by email to download it.' );
 	$submit_text = get_option( 'modal_form_submit_text', 'Submit' );
+	$file        = get_option( 'modal_form_file_select', false );
+	$pages       = get_option( 'modal_form_pages', array() );
+	$posts       = get_option( 'modal_form_posts', array() );
+	$display     = "";
+
+	if ( ! empty( $pages['modal_form_pages'] ) || ! empty( $posts['modal_form_posts'] ) ) {
+		if ( ( ! empty( $pages['modal_form_pages'] ) && in_array( get_the_ID(), $pages['modal_form_pages'], true ) ) || ( ! empty( $posts['modal_form_posts'] ) && in_array( get_the_ID(), $posts['modal_form_posts'], true ) ) ) {
+			$display = "style='display: block;'";
+		}
+	}
+
 
 	ob_start(); ?>
-    <div id="modal-form" class="modal-form">
+    <div id="modal-form" class="modal-form" <?= $display ?>>
         <div class="modal-content">
             <span id="modal-form-close" class="close">&times;</span>
             <h2><?= $title ?></h2>
             <hr>
             <p class="description"><?= $description ?></p>
             <form action="<?= plugin_dir_url( __FILE__ ) . 'process-form.php' ?>" method="post">
+				<?php
+				if ( $file ) {
+					echo '<input type="hidden" name="file" value="' . $file . '">';
+				}
+				?>
 				<?php foreach ( $fields as $field ) : ?>
                     <div class="form-group" data-type="<?= $field['type'] ?>">
                         <label for="<?= $field['name'] ?>"
@@ -146,14 +162,14 @@ function modal_form_fields_callback(): void {
             </div>
 
             <div id="select_file_general_from_library">
-                <label for="modal_form_file_select"><?= __( 'Select File:', 'modal-form-brochure' ) ?></label>
+                <label for="modal_form_file_select"><?= __( 'Select File to to show a modal at load (also default file to not use ?file=FILEID for general case):', 'modal-form-brochure' ) ?></label>
                 <input type="text" id="modal_form_file_select" name="modal_form_file_select" readonly
                        value="<?= $file ?>">
                 <button type="button" id="upload-button"><?= __( 'Select File', 'modal-form-brochure' ) ?></button>
             </div>
 
             <div id="content-select">
-                <label for="modal_form_pages"><?= __( 'Select Pages:', 'modal-form-brochure' ) ?></label>
+                <label for="modal_form_pages"><?= __( 'Select Pages to show a modal at load:', 'modal-form-brochure' ) ?></label>
 				<?php
 				// Get selected pages
 				$selected_pages = get_option( 'modal_form_pages' );
@@ -189,7 +205,7 @@ function modal_form_fields_callback(): void {
             </div>
 
             <div id="content-select-posts">
-                <label for="modal_form_posts"><?= __( 'Select Posts:', 'modal-form-brochure' ) ?></label>
+                <label for="modal_form_posts"><?= __( 'Select Posts to show a modal at load:', 'modal-form-brochure' ) ?></label>
 				<?php
 				// Get selected posts
 				$selected_posts = get_option( 'modal_form_posts' );
