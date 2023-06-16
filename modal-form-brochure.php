@@ -34,6 +34,7 @@ function add_modal_form(): void {
 	$title       = get_option( 'modal_form_title', 'Do you want to download this product sheet?' );
 	$description = get_option( 'modal_form_description', 'In order to receive your product sheet, please fill in your information below, we will send you a link by email to download it.' );
 	$submit_text = get_option( 'modal_form_submit_text', 'Submit' );
+	$file        = get_option( 'modal_form_file_select', false );
 
 	ob_start(); ?>
     <div id="modal-form" class="modal-form">
@@ -43,6 +44,11 @@ function add_modal_form(): void {
             <hr>
             <p class="description"><?= $description ?></p>
             <form action="<?= plugin_dir_url( __FILE__ ) . 'process-form.php' ?>" method="post">
+				<?php
+				if ( $file ) {
+					echo '<input type="hidden" name="file" value="' . $file . '">';
+				}
+				?>
 				<?php foreach ( $fields as $field ) : ?>
                     <div class="form-group" data-type="<?= $field['type'] ?>">
                         <label for="<?= $field['name'] ?>"
