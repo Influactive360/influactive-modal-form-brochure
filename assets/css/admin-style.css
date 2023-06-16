@@ -62,7 +62,8 @@
 #email-recipient label,
 #recipient-fields label,
 #content-select label,
-#content-select-posts label {
+#content-select-posts label,
+#select_file_general_from_library label {
     display: block;
     margin-top: 20px;
     margin-bottom: 10px;
