@@ -48,8 +48,9 @@ function send_form_email( $data ): void {
 		$message_admin .= ucwords( $key ) . ': ' . $value . "<br>\n\r";
 	}
 
-	$file_id       = $data['file'];
-	$file_url      = wp_get_attachment_url( $file_id );
+	$file_id  = $data['file'];
+	$file_url = wp_get_attachment_url( $file_id );
+	echo $file_id . '<br>';
 	$file_name     = basename( get_attached_file( $file_id ) ) ?? '';
 	$message       .= '<a href="' . $file_url . '">' . __( "Download your brochure", "modal-form-brochure" ) . ' ' . $file_name . '</a><br><br>';
 	$message_admin .= '<br><a href="' . $file_url . '">' . __( "File:", "modal-form-brochure" ) . ' ' . $file_name . ' </a><br><br> ';
