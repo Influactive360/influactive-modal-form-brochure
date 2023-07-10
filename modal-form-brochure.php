@@ -418,7 +418,6 @@ function load_modal_form_textdomain(): void
 }
 
 add_filter('wp_mail_from', 'wp_mail_from');
-
 function wp_mail_from($content_type): string
 {
     return get_option('modal_form_email_recipient', get_bloginfo('admin_email'));
