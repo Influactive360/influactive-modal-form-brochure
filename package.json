@@ -9,7 +9,7 @@
   "private": false,
   "dependencies": {
     "sass": "^1.63.6",
-    "vite": "^4.3.9"
+    "vite": "^4.4.2"
   },
   "scripts": {
     "build": "npm run lint && vite build",
