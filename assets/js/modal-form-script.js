@@ -1,83 +1,132 @@
-window.addEventListener("load", function () {
-    const brochureLinks = document.querySelectorAll("a[href*=\"#brochure\"]")
-    const modalForm = document.querySelector("#modal-form")
-    const modalFormClose = document.querySelector("#modal-form-close")
-    let file // variable for storing the file URL
+/* global grecaptcha */
 
-    // Check if modalForm is initially in 'block' display
-    if (modalForm && getComputedStyle(modalForm).display === "block") {
-        document.body.style.overflow = "hidden"
-    }
+/* global ajax_object */
 
-    if (brochureLinks && modalForm && modalFormClose) {
+function submitForm(messageDiv, form, file, recaptchaResponse) {
+	const xhr = new XMLHttpRequest();
+	const formData = new FormData(form);
+	formData.append('action', 'send_email');
 
-        brochureLinks.forEach(function (element) {
-            element.addEventListener("click", function (e) {
-                e.preventDefault()
+	if (recaptchaResponse) {
+		formData.append('recaptcha_response', recaptchaResponse);
+	}
 
-                // Retrieve the full href including query parameters
-                const href = element.getAttribute("href")
+	if (file) {
+		formData.delete("brochure")
+		formData.append("brochure", file)
+	}
 
-                // Check if href contains '?'
-                if (href.includes("?")) {
-                    // Split the href on the '?' character to get the parameters
-                    const parts = href.split("?")
+	xhr.open('POST', ajax_object.ajaxurl, true);
 
-                    // Check if we have parameters
-                    if (parts.length > 1) {
-                        // Split the parameters on the '=' character to get the file URL
-                        const params = parts[1].split("=")
+	xhr.onload = function() {
+		if (xhr.status === 200) {
+			const response = JSON.parse(xhr.responseText);
+			if (response.data) {
+				// Display the success message in the div
+				messageDiv.textContent = response.data.message;
+				form.reset();
+			} else {
+				// Display the error message in the div
+				messageDiv.textContent = response.data.message;
+				console.log(response.data);
+			}
+		} else {
+			// Display the AJAX error message in the div
+			messageDiv.textContent = "An error occurred with the AJAX request";
+		}
+	};
 
-                        // Check if we have a file parameter
-                        if (params[0] === "file") {
-                            file = params[1]
-                        }
-                    }
-                }
+	xhr.send(formData);
+}
 
-                modalForm.style.display = "block"
-                document.body.style.overflow = "hidden"
-            })
-        })
+window.addEventListener("load", function() {
+	const brochureLinks = document.querySelectorAll("a[href*=\"#brochure\"]")
+	const modalForm = document.querySelector("#modal-form")
+	const modalFormClose = document.querySelector("#modal-form-close")
+	let file // variable for storing the file URL
 
-        modalFormClose.addEventListener("click", function () {
-            modalForm.style.display = "none"
-            document.body.style.overflow = "auto"
-            document.body.style.overflowX = "hidden"
-        })
+	// Check if modalForm is initially in 'block' display
+	if (modalForm && getComputedStyle(modalForm).display === "block") {
+		document.body.style.overflow = "hidden"
+	}
 
-        window.addEventListener("click", function (e) {
-            if (e.target === modalForm) {
-                modalForm.style.display = "none"
-                document.body.style.overflow = "auto"
-                document.body.style.overflowX = "hidden"
-            }
-        })
-    }
+	if (brochureLinks && modalForm && modalFormClose) {
+		brochureLinks.forEach(function(element) {
+			element.addEventListener("click", function(e) {
+				e.preventDefault()
 
-    // on form submit
-    const form = document.querySelector("#modal-form form")
-    if (form) {
-        form.addEventListener("submit", function (e) {
-            e.preventDefault()
-            const formData = new FormData(form)
+				// Retrieve the full href including query parameters
+				const href = element.getAttribute("href")
 
-            // Add the file URL to the form data
-            if (file) {
-                formData.delete("file")
-                formData.append("file", file)
-            }
+				// Check if href contains '?'
+				if (href.includes("?")) {
+					// Split the href on the '?' character to get the parameters
+					const parts = href.split("?")
 
-            const xhr = new XMLHttpRequest()
-            xhr.open("POST", form.action, true)
+					// Check if we have parameters
+					if (parts.length > 1) {
+						// Split the parameters on the '=' character to get the file URL
+						const params = parts[1].split("=")
 
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    modalForm.querySelector(".message").innerHTML = xhr.responseText
-                }
-            }
+						// Check if we have a file parameter
+						if (params[0] === "FILE_ID") {
+							file = params[1]
+						}
+					}
+				}
 
-            xhr.send(formData)
-        })
-    }
+				modalForm.style.display = "block"
+				document.body.style.overflow = "hidden"
+			})
+		})
+
+		modalFormClose.addEventListener("click", function() {
+			modalForm.style.display = "none"
+			document.body.style.overflow = "auto"
+			document.body.style.overflowX = "hidden"
+		})
+
+		window.addEventListener("click", function(e) {
+			if (e.target === modalForm) {
+				modalForm.style.display = "none"
+				document.body.style.overflow = "auto"
+				document.body.style.overflowX = "hidden"
+			}
+		})
+
+		window.addEventListener("keydown", function(e) {
+			if (e.key === "Escape") {
+				modalForm.style.display = "none"
+				document.body.style.overflow = "auto"
+				document.body.style.overflowX = "hidden"
+			}
+		})
+	}
+
+	// on form submit
+	const form = document.querySelector("#modal-form form")
+	if (form) {
+		form.addEventListener("submit", function(e) {
+			e.preventDefault()
+			const recaptchaInput = form.querySelector('input[name="recaptcha_site_key"]');
+			const messageDiv = form.querySelector('.influactive-form-message');
+
+			if (recaptchaInput && grecaptcha) {
+				const recaptcha_site_key = recaptchaInput.value;
+				grecaptcha.ready(function() {
+					grecaptcha.execute(recaptcha_site_key, {action: 'submit'}).then(function(token) {
+						submitForm(messageDiv, form, file, token);
+						setTimeout(function() {
+							messageDiv.textContent = '';
+						}, 5000);
+					});
+				});
+			} else {
+				submitForm(messageDiv, form, file);
+				setTimeout(function() {
+					messageDiv.textContent = '';
+				}, 5000);
+			}
+		});
+	}
 })
