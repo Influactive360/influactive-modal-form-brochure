@@ -134,11 +134,11 @@ function modal_form_fields_callback(): void {
             <label for="modal_form_description"><?= __( 'Modal Description:', 'influactive-modal-form-brochure' ) ?></label>
 			<?php
 			wp_editor( $form_description, 'modal_form_description', array(
-					'textarea_name' => 'modal_form_description',
-					'media_buttons' => false,
-					'textarea_rows' => 6,
-					'tinymce'       => true,
-				) );
+				'textarea_name' => 'modal_form_description',
+				'media_buttons' => false,
+				'textarea_rows' => 6,
+				'tinymce'       => true,
+			) );
 			?>
             <label for="modal_form_select">
 				<?= __( 'Select Form to use:', 'influactive-modal-form-brochure' ) ?>
@@ -170,7 +170,7 @@ function modal_form_fields_callback(): void {
         </div>
 
         <div id="select_file_general_from_library">
-            <label for="modal_form_file_select"><?= __( 'Select File to to show a modal at load (also default file to not use ?file=FILEID for general case):', 'influactive-modal-form-brochure' ) ?></label>
+            <label for="modal_form_file_select"><?= __( 'Select File to to show a modal at load (also default file to not use ?FILE_ID=ID for general case):', 'influactive-modal-form-brochure' ) ?></label>
             <input type="text" id="modal_form_file_select" name="modal_form_file_select" readonly
                    value="<?= $file ?>">
             <button type="button"
