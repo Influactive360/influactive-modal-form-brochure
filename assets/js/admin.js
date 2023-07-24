@@ -1,5 +1,4 @@
 /* global Choices */
-/* global wp */
 
 document.addEventListener("DOMContentLoaded", function() {
 	const selectElements = ['modal_form_pages', 'modal_form_posts'];
