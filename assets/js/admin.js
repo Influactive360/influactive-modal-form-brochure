@@ -1,4 +1,5 @@
 /* global Choices */
+/* global wp */
 
 document.addEventListener("DOMContentLoaded", function() {
 	const selectElements = ['modal_form_pages', 'modal_form_posts'];
@@ -27,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 
 		// Extend the wp.media object
-		// eslint-disable-next-line no-undef
 		mediaUploader = wp.media.frames.file_frame = wp.media({
 			multiple: false,
 		})
