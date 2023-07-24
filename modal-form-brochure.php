@@ -211,9 +211,14 @@ function modal_form_fields_callback(): void
                     while ($posts_query->have_posts()) {
                         $posts_query->the_post();
                         $selected = $selected_posts['modal_form_posts'] && in_array(get_the_ID(), $selected_posts['modal_form_posts'], true) ? 'selected' : '';
-                        ?>
-                        <option value="<?php the_ID(); ?>" <?= $selected ?>><?php the_title(); ?></option>
-                        <?php
+                        $permalink = get_permalink();
+                        $post_type = get_post_type();
+
+                        if ($permalink && $post_type !== 'attachment' && $post_type !== 'influactive-forms' && !is_wp_error($permalink)) {
+                            ?>
+                            <option value="<?php the_ID(); ?>" <?= $selected ?>><?php the_title(); ?></option>
+                            <?php
+                        }
                     }
                     wp_reset_postdata();
                 }
