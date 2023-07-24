@@ -3,13 +3,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modal Forms Brochure by Influactive 1.2\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/modal-form-brochure\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/influactive-modal-form-brochure\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-07-22T17:08:13+00:00\n"
+"POT-Creation-Date: 2023-07-24T12:34:37+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: influactive-modal-form-brochure\n"
@@ -30,69 +30,69 @@ msgstr ""
 msgid "https://influactive.com"
 msgstr ""
 
-#: modal-form-brochure.php:26
+#: modal-form-brochure.php:27
 msgid "The plugin Modal Form Brochure requires the plugin Forms everywhere by Influactive to be activated."
 msgstr ""
 
-#: modal-form-brochure.php:61
-#: modal-form-brochure.php:123
+#: modal-form-brochure.php:65
+#: modal-form-brochure.php:130
 msgid "Do you want to download this product sheet?"
 msgstr ""
 
-#: modal-form-brochure.php:62
-#: modal-form-brochure.php:124
+#: modal-form-brochure.php:66
+#: modal-form-brochure.php:131
 msgid "In order to receive your product sheet, please fill in your information below, we will send you a link by email to download it."
 msgstr ""
 
-#: modal-form-brochure.php:102
+#: modal-form-brochure.php:107
 msgid "Save Settings"
 msgstr ""
 
-#: modal-form-brochure.php:117
+#: modal-form-brochure.php:123
 msgid "Main Settings"
 msgstr ""
 
-#: modal-form-brochure.php:125
+#: modal-form-brochure.php:132
 msgid "Submit"
 msgstr ""
 
-#: modal-form-brochure.php:131
+#: modal-form-brochure.php:138
 msgid "Modal Title:"
 msgstr ""
 
-#: modal-form-brochure.php:134
+#: modal-form-brochure.php:141
 msgid "Modal Description:"
 msgstr ""
 
-#: modal-form-brochure.php:144
+#: modal-form-brochure.php:151
 msgid "Select Form to use:"
 msgstr ""
 
-#: modal-form-brochure.php:147
-#: modal-form-brochure.php:201
+#: modal-form-brochure.php:154
+#: modal-form-brochure.php:208
 msgid "- Select -"
 msgstr ""
 
-#: modal-form-brochure.php:167
+#: modal-form-brochure.php:174
 msgid "Submit Button Text:"
 msgstr ""
 
-#: modal-form-brochure.php:173
+#: modal-form-brochure.php:180
 msgid "Select File to to show a modal at load (also default file to not use ?FILE_ID=ID for general case):"
 msgstr ""
 
-#: modal-form-brochure.php:177
+#: modal-form-brochure.php:184
 msgid "Select File"
 msgstr ""
 
-#: modal-form-brochure.php:181
+#: modal-form-brochure.php:188
 msgid "Select Posts to show a modal at load:"
 msgstr ""
 
-#: modal-form-brochure.php:221
+#: modal-form-brochure.php:228
 msgid "Modal Form Options"
 msgstr ""
 
-#: modal-form-brochure.php:239
+#: modal-form-brochure.php:248
 msgid "Settings"
 msgstr ""
