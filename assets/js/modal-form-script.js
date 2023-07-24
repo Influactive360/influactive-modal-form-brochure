@@ -69,7 +69,7 @@ window.addEventListener("load", function() {
 						const params = parts[1].split("=")
 
 						// Check if we have a file parameter
-						if (params[0] === "FILE_ID") {
+						if (params[0] === "file") {
 							file = params[1]
 						}
 					}

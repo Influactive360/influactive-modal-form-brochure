@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Modal Forms Brochure by Influactive
- * Description: A plugin to display a modal with a form on a link click (#brochure and a parameter ?FILE_ID=ID).
+ * Description: A plugin to display a modal with a form on a link click (#brochure and a parameter ?file=ID).
  * Version: 1.2
  * Author: Influactive
  * Author URI: https://influactive.com
@@ -177,7 +177,7 @@ function modal_form_fields_callback(): void
         </div>
 
         <div id="select_file_general_from_library">
-            <label for="modal_form_file_select"><?= __('Select File to to show a modal at load (also default file to not use ?FILE_ID=ID for general case):', 'influactive-modal-form-brochure') ?></label>
+            <label for="modal_form_file_select"><?= __('Select File to to show a modal at load (also default file to not use ?file=ID for general case):', 'influactive-modal-form-brochure') ?></label>
             <input type="text" id="modal_form_file_select" name="modal_form_file_select" readonly
                    value="<?= $file ?>">
             <button type="button"
