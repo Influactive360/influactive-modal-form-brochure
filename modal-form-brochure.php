@@ -351,7 +351,6 @@ function add_action_links(array $links): array
 
 add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'add_action_links');
 
-add_action('plugins_loaded', 'load_modal_form_textdomain');
 /**
  * Load the text domain for the Modal Form Brochure plugin.
  *
@@ -364,3 +363,5 @@ function load_modal_form_textdomain(): void
 {
     load_plugin_textdomain('influactive-modal-form-brochure', false, dirname(plugin_basename(__FILE__)) . '/languages/');
 }
+
+add_action('plugins_loaded', 'load_modal_form_textdomain');
