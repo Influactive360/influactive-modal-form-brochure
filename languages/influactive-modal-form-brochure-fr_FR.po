@@ -1,0 +1,115 @@
+# Copyright (C) 2023 Influactive
+# This file is distributed under the GPL2.
+msgid ""
+msgstr ""
+"Project-Id-Version: Modal Forms Brochure by Influactive 1.2\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/influactive-modal-"
+"form-brochure\n"
+"Last-Translator: \n"
+"Language-Team: Français\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-07-25T09:51:48+00:00\n"
+"PO-Revision-Date: 2023-07-25 09:58+0000\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Domain: influactive-modal-form-brochure\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Loco-Version: 2.6.4; wp-6.2.2"
+
+#. Plugin Name of the plugin
+msgid "Modal Forms Brochure by Influactive"
+msgstr "Brochure Formulaires Modaux par Influactive"
+
+#. Description of the plugin
+msgid ""
+"A plugin to display a modal with a form on a link click (#brochure and a "
+"parameter ?file=ID)."
+msgstr ""
+"Un plugin pour afficher une modale avec un formulaire sur un clic de lien "
+"(#brochure et un paramètre ?file=ID)."
+
+#. Author of the plugin
+msgid "Influactive"
+msgstr "Influactive"
+
+#. Author URI of the plugin
+msgid "https://influactive.com"
+msgstr "https://influactive.com"
+
+#: modal-form-brochure.php:45
+msgid ""
+"The plugin Modal Form Brochure requires the plugin Forms everywhere by "
+"Influactive to be activated."
+msgstr ""
+"Le plugin Modal Form Brochure nécessite l'activation du plugin Forms "
+"everywhere by Influactive."
+
+#: modal-form-brochure.php:114 modal-form-brochure.php:206
+msgid "Do you want to download this product sheet?"
+msgstr "Vous souhaitez télécharger cette fiche produit ?"
+
+#: modal-form-brochure.php:115 modal-form-brochure.php:207
+msgid ""
+"In order to receive your product sheet, please fill in your information "
+"below, we will send you a link by email to download it."
+msgstr ""
+"Afin de recevoir votre fiche produit, merci de renseigner vos informations "
+"ci-dessous, nous vous enverrons un lien par email pour la télécharger."
+
+#: modal-form-brochure.php:167
+msgid "Save Settings"
+msgstr "Enregistrer les paramètres"
+
+#: modal-form-brochure.php:190
+msgid "Main Settings"
+msgstr "Réglages principaux"
+
+#: modal-form-brochure.php:208
+msgid "Submit"
+msgstr "Soumettre"
+
+#: modal-form-brochure.php:214
+msgid "Modal Title:"
+msgstr "Titre modal :"
+
+#: modal-form-brochure.php:217
+msgid "Modal Description:"
+msgstr "Description modale :"
+
+#: modal-form-brochure.php:227
+msgid "Select Form to use:"
+msgstr "Sélectionnez le formulaire à utiliser :"
+
+#: modal-form-brochure.php:230 modal-form-brochure.php:284
+msgid "- Select -"
+msgstr "- Sélectionner -"
+
+#: modal-form-brochure.php:250
+msgid "Submit Button Text:"
+msgstr "Envoyer le texte du bouton :"
+
+#: modal-form-brochure.php:256
+msgid ""
+"Select File to to show a modal at load (also default file to not use ?"
+"file=ID for general case):"
+msgstr ""
+"Sélectionnez File to pour afficher un modal au chargement (également le "
+"fichier par défaut pour ne pas utiliser ?file=ID pour le cas général) :"
+
+#: modal-form-brochure.php:260
+msgid "Select File"
+msgstr "Choisir le dossier"
+
+#: modal-form-brochure.php:264
+msgid "Select Posts to show a modal at load:"
+msgstr "Sélectionnez Posts pour afficher un modal au chargement :"
+
+#: modal-form-brochure.php:309
+msgid "Modal Form Options"
+msgstr "Options de formulaire modal"
+
+#: modal-form-brochure.php:346
+msgid "Settings"
+msgstr "Paramètres"
