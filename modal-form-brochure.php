@@ -150,8 +150,7 @@ add_action('wp_footer', 'add_modal_form', 10);
  */
 function modal_form_options_page(): void
 {
-    // Check user capabilities
-    if (!current_user_can('manage_options')) {
+    if (!current_user_can('edit_posts')) {
         return;
     }
 
