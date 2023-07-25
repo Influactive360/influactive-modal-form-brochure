@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-07-25T09:51:48+00:00\n"
+"POT-Creation-Date: 2023-07-25T12:59:03+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: influactive-modal-form-brochure\n"
@@ -35,64 +35,64 @@ msgid "The plugin Modal Form Brochure requires the plugin Forms everywhere by In
 msgstr ""
 
 #: modal-form-brochure.php:114
-#: modal-form-brochure.php:206
+#: modal-form-brochure.php:205
 msgid "Do you want to download this product sheet?"
 msgstr ""
 
 #: modal-form-brochure.php:115
-#: modal-form-brochure.php:207
+#: modal-form-brochure.php:206
 msgid "In order to receive your product sheet, please fill in your information below, we will send you a link by email to download it."
 msgstr ""
 
-#: modal-form-brochure.php:167
+#: modal-form-brochure.php:166
 msgid "Save Settings"
 msgstr ""
 
-#: modal-form-brochure.php:190
+#: modal-form-brochure.php:189
 msgid "Main Settings"
 msgstr ""
 
-#: modal-form-brochure.php:208
+#: modal-form-brochure.php:207
 msgid "Submit"
 msgstr ""
 
-#: modal-form-brochure.php:214
+#: modal-form-brochure.php:213
 msgid "Modal Title:"
 msgstr ""
 
-#: modal-form-brochure.php:217
+#: modal-form-brochure.php:216
 msgid "Modal Description:"
 msgstr ""
 
-#: modal-form-brochure.php:227
+#: modal-form-brochure.php:226
 msgid "Select Form to use:"
 msgstr ""
 
-#: modal-form-brochure.php:230
-#: modal-form-brochure.php:284
+#: modal-form-brochure.php:229
+#: modal-form-brochure.php:283
 msgid "- Select -"
 msgstr ""
 
-#: modal-form-brochure.php:250
+#: modal-form-brochure.php:249
 msgid "Submit Button Text:"
 msgstr ""
 
-#: modal-form-brochure.php:256
+#: modal-form-brochure.php:255
 msgid "Select File to to show a modal at load (also default file to not use ?file=ID for general case):"
 msgstr ""
 
-#: modal-form-brochure.php:260
+#: modal-form-brochure.php:259
 msgid "Select File"
 msgstr ""
 
-#: modal-form-brochure.php:264
+#: modal-form-brochure.php:263
 msgid "Select Posts to show a modal at load:"
 msgstr ""
 
-#: modal-form-brochure.php:309
+#: modal-form-brochure.php:308
 msgid "Modal Form Options"
 msgstr ""
 
-#: modal-form-brochure.php:346
+#: modal-form-brochure.php:345
 msgid "Settings"
 msgstr ""
