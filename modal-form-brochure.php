@@ -197,7 +197,7 @@ add_action('admin_init', 'modal_form_settings_init');
  *
  * This function is invoked when rendering the form fields in a settings page for the plugin. It retrieves the necessary
  * form data from options and displays the fields accordingly. The form fields include the modal title, modal description,
- * select form to use, submit button text, and options to select file and posts to show a modal at load.
+ * select a form to use, submit button text, and options to select file and posts to show a modal at a load.
  *
  * @return void
  */
