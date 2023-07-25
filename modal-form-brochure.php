@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Modal Forms Brochure by Influactive
  * Description: A plugin to display a modal with a form on a link click (#brochure and a parameter ?file=ID).
- * Version: 1.2
+ * Version: 1.3
  * Author: Influactive
  * Author URI: https://influactive.com
  * Text Domain: influactive-modal-form-brochure
@@ -67,8 +67,8 @@ function load_modal_form_scripts(): void
     if (is_admin()) {
         return;
     }
-    wp_enqueue_script('influactive-modal-form-brochure', plugin_dir_url(__FILE__) . 'assets/js/modal-form-script.min.js', array(), '1.0', true);
-    wp_enqueue_style('influactive-modal-form-brochure', plugin_dir_url(__FILE__) . 'assets/css/modal-form-style.min.css', array(), '1.0');
+    wp_enqueue_script('influactive-modal-form-brochure', plugin_dir_url(__FILE__) . 'assets/js/modal-form-script.min.js', array(), '1.3', true);
+    wp_enqueue_style('influactive-modal-form-brochure', plugin_dir_url(__FILE__) . 'assets/css/modal-form-style.min.css', array(), '1.3');
 }
 
 add_action('wp_enqueue_scripts', 'load_modal_form_scripts');
@@ -90,8 +90,8 @@ function load_admin_scripts(string $hook): void
         return;
     }
     wp_enqueue_media(); // Ajoutez cette ligne
-    wp_enqueue_script('influactive-modal-form-brochure-admin', plugin_dir_url(__FILE__) . 'assets/js/admin.min.js', array('choices-js'), '1.0', true);
-    wp_enqueue_style('influactive-modal-form-brochure-admin', plugin_dir_url(__FILE__) . 'assets/css/admin-style.min.css', array(), '1.0');
+    wp_enqueue_script('influactive-modal-form-brochure-admin', plugin_dir_url(__FILE__) . 'assets/js/admin.min.js', array('choices-js'), '1.3', true);
+    wp_enqueue_style('influactive-modal-form-brochure-admin', plugin_dir_url(__FILE__) . 'assets/css/admin-style.min.css', array(), '1.3');
 
     // Enqueue choices.js CSS et JS
     wp_enqueue_style('choices-css', 'https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.2.0/choices.min.css', array(), '10.2.0');

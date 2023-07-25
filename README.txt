@@ -4,7 +4,7 @@ Donate link: https://influactive.com
 Tags: modal, form, brochure
 Requires at least: 5.2
 Tested up to: 6.2
-Stable tag: 1.2
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 8.0
@@ -46,5 +46,5 @@ Add a link with #brochure and a parameter ?file= with the file ID. The result: #
 = 1.1 =
 * ADD modal and default file to load modal on pages/posts at load
 
-= 1.0 =
+= 1.3 =
 * Initial release
