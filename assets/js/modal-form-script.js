@@ -1,7 +1,11 @@
-/* global grecaptcha */
+/* global grecaptcha, ajax_object */
 
-/* global ajax_object */
-
+/**
+ * @param {Element} messageDiv
+ * @param {Element} form
+ * @param {string|Blob} file
+ * @param {T|string|Blob} recaptchaResponse
+ */
 function submitForm(messageDiv, form, file, recaptchaResponse) {
 	const xhr = new XMLHttpRequest();
 	const formData = new FormData(form);
@@ -122,7 +126,7 @@ window.addEventListener("load", function() {
 					});
 				});
 			} else {
-				submitForm(messageDiv, form, file);
+				submitForm(messageDiv, form, file, null);
 				setTimeout(function() {
 					messageDiv.textContent = '';
 				}, 5000);
