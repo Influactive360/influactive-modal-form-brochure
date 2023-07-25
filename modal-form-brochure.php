@@ -12,27 +12,56 @@
  **/
 
 if (!defined('ABSPATH')) {
-    exit;
+    throw new RuntimeException("WordPress environment not loaded. Exiting...");
 }
 
 include_once(ABSPATH . 'wp-admin/includes/plugin.php');
 
-if (!is_plugin_active('influactive-forms/functions.php')) {
-    add_action('admin_notices', 'influactive_forms_error');
+/**
+ * Check if the Forms everywhere by Influactive plugin is active.
+ *
+ * This function checks if the Forms everywhere by Influactive plugin is currently active in WordPress.
+ *
+ * @return bool Returns true if the plugin is active, false otherwise.
+ */
+function is_influactive_active(): bool
+{
+    return is_plugin_active('influactive-forms/functions.php');
+}
 
-    function influactive_forms_error(): void
-    {
-        ?>
-        <div class="error notice">
-            <p><?php _e('The plugin Modal Form Brochure requires the plugin Forms everywhere by Influactive to be activated.', 'influactive-modal-form-brochure'); ?></p>
-        </div>
-        <?php
-    }
+/**
+ * Display error notice for missing required plugin.
+ *
+ * This function outputs an error notice when the plugin Modal Form Brochure is active but the required plugin
+ * Forms everywhere by Influactive is not activated. The error notice informs the user about the dependency and suggests
+ * activating the required plugin.
+ *
+ * @return void
+ */
+function show_influactive_forms_error_notice(): void
+{
+    ?>
+    <div class="error notice">
+        <p><?php _e('The plugin Modal Form Brochure requires the plugin Forms everywhere by Influactive to be activated.', 'influactive-modal-form-brochure'); ?></p>
+    </div>
+    <?php
+}
 
+if (!is_influactive_active()) {
+    add_action('admin_notices', 'show_influactive_forms_error_notice');
     deactivate_plugins(plugin_basename(__FILE__));
 
     return;
 }
+
+/**
+ * Load the scripts and styles for the modal form.
+ *
+ * This function checks if the user is an admin. If not, it includes the necessary JavaScript and CSS files
+ * for the modal form.
+ *
+ * @return void
+ */
 function load_modal_form_scripts(): void
 {
     if (is_admin()) {
@@ -44,7 +73,18 @@ function load_modal_form_scripts(): void
 
 add_action('wp_enqueue_scripts', 'load_modal_form_scripts');
 
-function load_admin_scripts($hook): void
+/**
+ * Load admin scripts for Modal Form options page.
+ *
+ * This function is used to enqueue necessary scripts and stylesheets for the admin page of Modal Form settings.
+ * It checks if the current page is the Modal Form options page and then enqueues the required scripts and stylesheets
+ * using the WordPress `wp_enqueue_script()` and `wp_enqueue_style()` functions.
+ * The function also includes the Choices.js library for enhancing select elements.
+ *
+ * @param string $hook The current admin page hook.
+ * @return void
+ */
+function load_admin_scripts(string $hook): void
 {
     if ('influactive-forms_page_modal-form-options' !== $hook) {
         return;
@@ -60,6 +100,15 @@ function load_admin_scripts($hook): void
 
 add_action('admin_enqueue_scripts', 'load_admin_scripts');
 
+/**
+ * Add a modal form to the page.
+ *
+ * This function adds a modal form to the page. The form is displayed based on the configuration settings. It retrieves the
+ * form title, description, and posts to display the form on from the options saved in the database. It also retrieves the
+ * form ID to display from the options.
+ *
+ * @return void
+ */
 function add_modal_form(): void
 {
     $title = get_option('modal_form_title', __('Do you want to download this product sheet?', 'influactive-modal-form-brochure'));
@@ -88,6 +137,17 @@ function add_modal_form(): void
 
 add_action('wp_footer', 'add_modal_form', 10);
 
+/**
+ * Display options page for Modal Form plugin.
+ *
+ * This function outputs the option page for the Modal Form plugin. It checks the user's capabilities to manage options,
+ * and if the user does not have the required capabilities, nothing is displayed.
+ *
+ * The option page includes a form with settings fields and sections. The form is submitted to the 'options.php' file
+ * and includes a submitted button to save the settings.
+ *
+ * @return void
+ */
 function modal_form_options_page(): void
 {
     // Check user capabilities
@@ -113,6 +173,13 @@ function modal_form_options_page(): void
     echo ob_get_clean();
 }
 
+/**
+ * Initialize the modal form settings.
+ *
+ * This function registers the necessary settings and sections for the modal form options page.
+ *
+ * @return void
+ */
 function modal_form_settings_init(): void
 {
     register_setting('modal_form_options', 'modal_form_title', 'sanitize_text_field');
@@ -125,6 +192,15 @@ function modal_form_settings_init(): void
 
 add_action('admin_init', 'modal_form_settings_init');
 
+/**
+ * Callback function for displaying form fields in a settings page.
+ *
+ * This function is invoked when rendering the form fields in a settings page for the plugin. It retrieves the necessary
+ * form data from options and displays the fields accordingly. The form fields include the modal title, modal description,
+ * select form to use, submit button text, and options to select file and posts to show a modal at load.
+ *
+ * @return void
+ */
 function modal_form_fields_callback(): void
 {
     $form_title = get_option('modal_form_title', __('Do you want to download this product sheet?', 'influactive-modal-form-brochure'));
@@ -141,10 +217,10 @@ function modal_form_fields_callback(): void
             <label for="modal_form_description"><?= __('Modal Description:', 'influactive-modal-form-brochure') ?></label>
             <?php
             wp_editor($form_description, 'modal_form_description', array(
-                'textarea_name' => 'modal_form_description',
-                'media_buttons' => false,
-                'textarea_rows' => 6,
-                'tinymce' => true,
+                    'textarea_name' => 'modal_form_description',
+                    'media_buttons' => false,
+                    'textarea_rows' => 6,
+                    'tinymce' => true,
             ));
             ?>
             <label for="modal_form_select">
@@ -154,9 +230,9 @@ function modal_form_fields_callback(): void
                 <option value="" disabled><?= __('- Select -', 'influactive-modal-form-brochure') ?></option>
                 <?php
                 $args = array(
-                    'post_type' => 'influactive-forms',
-                    'post_status' => 'publish',
-                    'nopaging' => true,
+                        'post_type' => 'influactive-forms',
+                        'post_status' => 'publish',
+                        'nopaging' => true,
                 );
                 $forms_query = new WP_Query($args);
                 if ($forms_query->have_posts()) {
@@ -189,15 +265,15 @@ function modal_form_fields_callback(): void
             <?php
             // Get selected posts
             $selected_posts = get_option('modal_form_posts') ?? [
-                'modal_form_posts' => [
-                    0 => 0,
-                ],
+                    'modal_form_posts' => [
+                            0 => 0,
+                    ],
             ];
             // Query for all posts
             $args = array(
-                'post_type' => 'any',
-                'post_status' => 'publish',
-                'nopaging' => true,
+                    'post_type' => 'any',
+                    'post_status' => 'publish',
+                    'nopaging' => true,
             );
             $posts_query = new WP_Query($args);
             if (empty($selected_posts)) {
@@ -233,24 +309,41 @@ add_action('admin_menu', static function () {
     add_submenu_page('edit.php?post_type=influactive-forms', __('Modal Form Options', 'influactive-modal-form-brochure'), __('Modal Form Options', 'influactive-modal-form-brochure'), 'manage_options', 'modal-form-options', 'modal_form_options_page');
 });
 
-function modal_posts_select_validate($input): array
+/**
+ * Validate and sanitize selected posts for modal form.
+ *
+ * This function takes an input array and performs validation and sanitization on the selected posts.
+ * It filters out any invalid or non-existent posts and returns the sanitized array with valid post IDs.
+ *
+ * @param array $input The input array containing selected posts.
+ * @return array The sanitized array with valid post IDs.
+ */
+function modal_posts_select_validate(array $input): array
 {
     // Initialize the new array that will hold the sanitize values
     $new_input = array();
 
-    if (is_array($input)) {
-        // Validation for posts
-        $posts = array_map('absint', $input);
-        $new_input['modal_form_posts'] = array_filter($posts, 'get_post');
-    }
+    // Validation for posts
+    $posts = array_map('absint', $input);
+    $new_input['modal_form_posts'] = array_filter($posts, 'get_post');
 
     return $new_input;
 }
 
-function add_action_links($links): array
+/**
+ * Add action links to the plugin's settings page.
+ *
+ * This function adds custom action links to the plugin's settings page in the WordPress admin interface.
+ * The action links provide easy access to the plugin's settings page.
+ *
+ * @param array $links The existing action links.
+ *
+ * @return array The modified action links.
+ */
+function add_action_links(array $links): array
 {
     $mylinks = array(
-        '<a href="' . admin_url('edit.php?post_type=influactive-forms&page=modal-form-options') . '">' . __("Settings", "influactive-modal-form-brochure") . '</a>',
+            '<a href="' . admin_url('edit.php?post_type=influactive-forms&page=modal-form-options') . '">' . __("Settings", "influactive-modal-form-brochure") . '</a>',
     );
 
     return array_merge($links, $mylinks);
@@ -259,6 +352,14 @@ function add_action_links($links): array
 add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'add_action_links');
 
 add_action('plugins_loaded', 'load_modal_form_textdomain');
+/**
+ * Load the text domain for the Modal Form Brochure plugin.
+ *
+ * This function loads the text domain for the Modal Form Brochure plugin, allowing translation of plugin strings.
+ * The text domain is loaded from the 'languages' directory in the plugin's file path.
+ *
+ * @return void
+ */
 function load_modal_form_textdomain(): void
 {
     load_plugin_textdomain('influactive-modal-form-brochure', false, dirname(plugin_basename(__FILE__)) . '/languages/');
