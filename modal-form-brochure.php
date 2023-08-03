@@ -67,8 +67,8 @@ function influactive_load_modal_form_scripts(): void {
 	if ( is_admin() ) {
 		return;
 	}
-	wp_enqueue_script( 'influactive-modal-form-brochure', plugin_dir_url( __FILE__ ) . 'assets/js/modal-form-script.min.js', array(), '1.3', true );
-	wp_enqueue_style( 'influactive-modal-form-brochure', plugin_dir_url( __FILE__ ) . 'assets/css/modal-form-style.min.css', array(), '1.3' );
+	wp_enqueue_script( 'influactive-modal-form-brochure', plugin_dir_url( __FILE__ ) . 'dist/frontEnd.bundled.js', array(), '1.3', true );
+	wp_enqueue_style( 'influactive-modal-form-brochure', plugin_dir_url( __FILE__ ) . 'dist/modal-form-script.bundled.css', array(), '1.3' );
 }
 
 add_action( 'wp_enqueue_scripts', 'influactive_load_modal_form_scripts' );
@@ -90,8 +90,8 @@ function influactive_load_admin_scripts( string $hook ): void {
 		return;
 	}
 	wp_enqueue_media(); // Ajoutez cette ligne
-	wp_enqueue_script( 'influactive-modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'assets/js/admin.min.js', array( 'choices-js' ), '1.3', true );
-	wp_enqueue_style( 'influactive-modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'assets/css/admin-style.min.css', array(), '1.3' );
+	wp_enqueue_script( 'influactive-modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'dist/backEnd.bundled.js', array( 'choices-js' ), '1.3', true );
+	wp_enqueue_style( 'influactive-modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'dist/admin.bundled.css', array(), '1.3' );
 
 	// Enqueue choices.js CSS et JS
 	wp_enqueue_style( 'choices-css', 'https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.2.0/choices.min.css', array(), '10.2.0' );
