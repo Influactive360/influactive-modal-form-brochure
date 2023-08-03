@@ -77,7 +77,7 @@ function influactive_load_admin_scripts( string $hook ): void {
 	if ( 'influactive-forms_page_modal-form-options' !== $hook ) {
 		return;
 	}
-	wp_enqueue_media(); // Ajoutez cette ligne
+	wp_enqueue_media();
 	wp_enqueue_script( 'influactive-modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'dist/backEnd.bundled.js', array( 'choices-js' ), '1.3', true );
 	wp_enqueue_style( 'influactive-modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'dist/admin.bundled.css', array(), '1.3' );
 
@@ -97,7 +97,7 @@ function influactive_add_modal_form(): void {
 	$title       = get_option( 'modal_form_title', __( 'Do you want to download this product sheet?', 'influactive-modal-form-brochure' ) );
 	$description = get_option( 'modal_form_description', __( 'In order to receive your product sheet, please fill in your information below, we will send you a link by email to download it.', 'influactive-modal-form-brochure' ) );
 	$posts       = get_option( 'modal_form_posts', array() );
-	$display     = "";
+	$display     = '';
 
 	if ( ! empty( $posts['modal_form_posts'] ) && ( in_array( get_the_ID(), $posts['modal_form_posts'], true ) ) ) {
 		$display = "style='display: block;'";
@@ -132,7 +132,6 @@ function influactive_modal_form_options_page(): void {
 		return;
 	}
 
-	// Start output buffering
 	ob_start();
 	?>
 	<div class="wrap">
@@ -146,7 +145,6 @@ function influactive_modal_form_options_page(): void {
 		</form>
 	</div>
 	<?php
-	// Output the content of the buffer
 	echo ob_get_clean();
 }
 
@@ -248,13 +246,12 @@ function influactive_modal_form_fields_callback(): void {
 					0 => 0,
 				],
 			];
-			// Query for all posts
-			$args        = array(
+			$args           = array(
 				'post_type'   => 'any',
 				'post_status' => 'publish',
 				'nopaging'    => true,
 			);
-			$posts_query = new WP_Query( $args );
+			$posts_query    = new WP_Query( $args );
 			if ( empty( $selected_posts ) ) {
 				$selected_posts['modal_form_posts'] = array();
 			}
@@ -296,10 +293,8 @@ add_action( 'admin_menu', static function () {
  * @return array The sanitized and filtered input array.
  */
 function influactive_modal_posts_select_validate( array $input ): array {
-	// Initialize the new array that will hold the sanitize values
 	$new_input = array();
 
-	// Validation for posts
 	$posts                         = array_map( 'absint', $input );
 	$new_input['modal_form_posts'] = array_filter( $posts, 'get_post' );
 
