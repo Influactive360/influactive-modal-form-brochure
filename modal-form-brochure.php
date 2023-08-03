@@ -112,7 +112,7 @@ function influactive_add_modal_form(): void {
 			<h2><?php echo esc_html( $title ); ?></h2>
 			<hr>
 			<div class="description"><?php echo wp_kses_post( $description ); ?></div>
-			<?= do_shortcode( "[influactive_form id='$form_id']" ) ?>
+			<?php echo do_shortcode( "[influactive_form id='$form_id']" ); ?>
 		</div>
 	</div>
 	<?php
@@ -145,7 +145,7 @@ function influactive_modal_form_options_page(): void {
 		</form>
 	</div>
 	<?php
-	echo ob_get_clean();
+	echo wp_kses_post( ob_get_clean() );
 }
 
 /**
@@ -172,33 +172,38 @@ add_action( 'admin_init', 'influactive_modal_form_settings_init' );
  * @return void
  */
 function influactive_modal_form_fields_callback(): void {
-	$form_title       = get_option( 'modal_form_title', __( 'Do you want to download this product sheet?', 'influactive-modal-form-brochure' ) );
-	$form_description = get_option( 'modal_form_description', __( 'In order to receive your product sheet, please fill in your information below, we will send you a link by email to download it.', 'influactive-modal-form-brochure' ) );
-	$form_submit_text = get_option( 'modal_form_submit_text', __( 'Submit', 'influactive-modal-form-brochure' ) );
+	$form_title       = get_option( 'modal_form_title', esc_html__( 'Do you want to download this product sheet?', 'influactive-modal-form-brochure' ) );
+	$form_description = get_option( 'modal_form_description', esc_html__( 'In order to receive your product sheet, please fill in your information below, we will send you a link by email to download it.', 'influactive-modal-form-brochure' ) );
+	$form_submit_text = get_option( 'modal_form_submit_text', esc_html__( 'Submit', 'influactive-modal-form-brochure' ) );
 	$file             = get_option( 'modal_form_file_select', false );
 	$form_select      = get_option( 'modal_form_select', false );
 	?>
 	<div class="columns-brochure">
 		<div id="content-edit">
-			<label for="modal_form_title"><?php echo __( 'Modal Title:', 'influactive-modal-form-brochure' ); ?></label>
+			<label
+				for="modal_form_title"><?php echo esc_html__( 'Modal Title:', 'influactive-modal-form-brochure' ); ?></label>
 			<input
 				id="modal_form_title" type="text" name="modal_form_title"
 				value="<?php echo esc_attr( $form_title ?? 'Do you want to download this product sheet?' ); ?>">
 			<label
-				for="modal_form_description"><?php echo __( 'Modal Description:', 'influactive-modal-form-brochure' ); ?></label>
+				for="modal_form_description"><?php echo esc_html__( 'Modal Description:', 'influactive-modal-form-brochure' ); ?></label>
 			<?php
-			wp_editor( $form_description, 'modal_form_description', array(
-				'textarea_name' => 'modal_form_description',
-				'media_buttons' => false,
-				'textarea_rows' => 6,
-				'tinymce'       => true,
-			) );
+			wp_editor(
+				$form_description,
+				'modal_form_description',
+				array(
+					'textarea_name' => 'modal_form_description',
+					'media_buttons' => false,
+					'textarea_rows' => 6,
+					'tinymce'       => true,
+				)
+			);
 			?>
 			<label for="modal_form_select">
-				<?php echo __( 'Select Form to use:', 'influactive-modal-form-brochure' ); ?>
+				<?php echo esc_html__( 'Select Form to use:', 'influactive-modal-form-brochure' ); ?>
 			</label>
 			<select id="modal_form_select" name="modal_form_select">
-				<option value="" disabled><?php echo __( '- Select -', 'influactive-modal-form-brochure' ); ?></option>
+				<option value="" disabled><?php echo esc_html__( '- Select -', 'influactive-modal-form-brochure' ); ?></option>
 				<?php
 				$args        = array(
 					'post_type'   => 'influactive-forms',
@@ -218,7 +223,8 @@ function influactive_modal_form_fields_callback(): void {
 				}
 				?>
 			</select>
-			<label for="modal_form_submit_text"><?= __( 'Submit Button Text:', 'influactive-modal-form-brochure' ) ?></label>
+			<label
+				for="modal_form_submit_text"><?= esc_html__( 'Submit Button Text:', 'influactive-modal-form-brochure' ) ?></label>
 			<input
 				id="modal_form_submit_text" type="text" name="modal_form_submit_text"
 				value="<?php echo esc_attr( $form_submit_text ?? 'Submit' ); ?>">
@@ -226,7 +232,7 @@ function influactive_modal_form_fields_callback(): void {
 
 		<div id="select_file_general_from_library">
 			<label
-				for="modal_form_file_select"><?= __( 'Select File to to show a modal at load (also default file to not use ?file=ID for general case):', 'influactive-modal-form-brochure' ) ?></label>
+				for="modal_form_file_select"><?= esc_html__( 'Select File to to show a modal at load (also default file to not use ?file=ID for general case):', 'influactive-modal-form-brochure' ) ?></label>
 			<input
 				type="text"
 				id="modal_form_file_select" name="modal_form_file_select"
@@ -234,14 +240,13 @@ function influactive_modal_form_fields_callback(): void {
 				value="<?php echo $file; ?>"
 			>
 			<button type="button"
-							id="upload-button"><?php echo __( 'Select File', 'influactive-modal-form-brochure' ); ?></button>
+							id="upload-button"><?php echo esc_html__( 'Select File', 'influactive-modal-form-brochure' ); ?></button>
 		</div>
 
 		<div id="content-select-posts">
 			<label
-				for="modal_form_posts"><?php echo __( 'Select Posts to show a modal at load:', 'influactive-modal-form-brochure' ); ?></label>
+				for="modal_form_posts"><?php echo esc_html__( 'Select Posts to show a modal at load:', 'influactive-modal-form-brochure' ); ?></label>
 			<?php
-			// Get selected posts
 			$selected_posts = get_option( 'modal_form_posts' ) ?? array(
 				'modal_form_posts' => array(
 					0 => 0,
