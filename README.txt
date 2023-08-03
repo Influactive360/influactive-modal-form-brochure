@@ -19,15 +19,10 @@ Once the plugin is activated, you can configure the modal form by going to the `
 
 You can configure the following fields:
 
-- Form Title: The title of the form.
-- Form Description: The description of the form.
-- Submit Button Text: The text of the submit button.
-- Admin Email Recipient: The email address that will receive the form information.
-- User Email Field: The field where the user should enter their email address.
-- User Name Field: The field where the user should enter their name.
-- GDPR Field: The field where the user should give their GDPR consent.
-- Email Text Header: The text at the top of the email sent to the user.
-- Email Text Footer: The text at the bottom of the email sent to the user.
+- Modal Title: The title of the form.
+- Modal Description: The description of the form.
+- Form Selector
+- Where to display the form: You can choose to display the form on all pages, or only on the homepage.
 
 == Installation ==
 
