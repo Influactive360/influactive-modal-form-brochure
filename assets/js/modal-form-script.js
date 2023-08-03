@@ -3,14 +3,17 @@ import '../css/modal-form-style.scss'
 /* global grecaptcha, ajaxObject */
 
 /**
- * @param {Element} messageDiv
- * @param {Element} form
- * @param {string|Blob} file
- * @param {string|Blob} recaptchaResponse
+ * Submit form data using AJAX request.
+ *
+ * @param {HTMLElement} messageDivParam - The message div element.
+ * @param {HTMLFormElement} form - The form element to submit.
+ * @param {File} file - The file to attach to the form data. Optional.
+ * @param {string} recaptchaResponse - The reCAPTCHA response. Optional.
  */
-function submitForm(messageDiv, form, file, recaptchaResponse) {
+const submitForm = (messageDivParam, form, file, recaptchaResponse) => {
   const xhr = new XMLHttpRequest()
   const formData = new FormData(form)
+  const messageDiv = { ...messageDivParam } // Clone the object
   formData.append('action', 'send_email')
 
   if (recaptchaResponse) {
@@ -24,20 +27,16 @@ function submitForm(messageDiv, form, file, recaptchaResponse) {
 
   xhr.open('POST', ajaxObject.ajaxurl, true)
 
-  xhr.onload = function () {
+  xhr.onload = function xhrOnload() {
     if (xhr.status === 200) {
       const response = JSON.parse(xhr.responseText)
       if (response.data) {
-        // Display the success message in the div
         messageDiv.textContent = response.data.message
         form.reset()
       } else {
-        // Display the error message in the div
         messageDiv.textContent = response.data.message
-        console.log(response.data)
       }
     } else {
-      // Display the AJAX error message in the div
       messageDiv.textContent = 'An error occurred with the AJAX request'
     }
   }
@@ -67,16 +66,16 @@ window.addEventListener('load', () => {
         // Check if href contains '?'
         if (href.includes('?')) {
           // Split the href on the '?' character to get the parameters
-          const parts = href.split('?')
+          const [queryString] = href.split('?')
 
           // Check if we have parameters
-          if (parts.length > 1) {
+          if (queryString) {
             // Split the parameters on the '=' character to get the file URL
-            const params = parts[1].split('=')
+            const [key, value] = queryString.split('=')
 
             // Check if we have a file parameter
-            if (params[0] === 'file') {
-              file = params[1]
+            if (key === 'file') {
+              file = value
             }
           }
         }
@@ -114,13 +113,13 @@ window.addEventListener('load', () => {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault()
-      const recaptchaInput = form.querySelector('input[name="recaptcha_site_key"]')
+      const recaptchaInput = form.querySelector('input[name="recaptchaSiteKey"]')
       const messageDiv = form.querySelector('.influactive-form-message')
 
       if (recaptchaInput && grecaptcha) {
-        const recaptcha_site_key = recaptchaInput.value
+        const recaptchaSiteKey = recaptchaInput.value
         grecaptcha.ready(() => {
-          grecaptcha.execute(recaptcha_site_key, { action: 'submit' }).then((token) => {
+          grecaptcha.execute(recaptchaSiteKey, { action: 'submit' }).then((token) => {
             submitForm(messageDiv, form, file, token)
             setTimeout(() => {
               messageDiv.textContent = ''

@@ -1,9 +1,11 @@
 import '../css/admin-style.scss'
 
-/* global Choices */
+/* global Choices, wp */
 
 /**
- * @param {string} elementId
+ * Initializes the Choices library for a given HTML select element.
+ *
+ * @param {string} elementId - The ID of the HTML select element.
  */
 const initializeChoicesFor = (elementId) => {
   const selectElement = document.getElementById(elementId)
@@ -16,18 +18,23 @@ const initializeChoicesFor = (elementId) => {
 }
 
 /**
- * @param e
- * @param mediaUploader
- * @param {Element} inputField
+ * Function to handle upload button click event.
+ *
+ * @param {Object} e - The event object.
+ * @param {Object} mediaParam - The media uploader object.
+ * @param {Object} inputFieldParam - The input field object.
  */
-const handleUploadButtonClick = (e, mediaUploader, inputField) => {
+const handleUploadButtonClick = (e, mediaParam, inputFieldParam) => {
   e.preventDefault()
+  let mediaUploader = mediaParam
+  const inputField = { ...inputFieldParam }
 
   if (mediaUploader) {
     mediaUploader.open()
     return
   }
 
+  // eslint-disable-next-line no-multi-assign
   mediaUploader = wp.media.frames.file_frame = wp.media({
     multiple: false,
   })
