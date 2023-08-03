@@ -1,0 +1,21 @@
+{
+  "name": "vendor_name/influactive-forms",
+  "description": "A plugin to create custom forms and display them anywhere on your website.",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "influactive",
+      "email": "support@influactive.com"
+    }
+  ],
+  "require": {
+    "ext-curl": "*",
+    "php": ">=8.0"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.7",
+    "phpunit/phpunit": "*",
+    "wp-coding-standards/wpcs": "^2.3"
+  }
+}
