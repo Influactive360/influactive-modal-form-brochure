@@ -104,15 +104,20 @@ function influactive_add_modal_form(): void {
 
 	$form_id = (int) get_option( 'modal_form_select', false );
 
+	// Escaping outputs
+	$title       = esc_html( $title );
+	$description = wp_kses_post( $description );
+	$display     = esc_attr( $display );
+
 	?>
 	<div
 		id="modal-form"
-		class="modal-form influactive-modal-form-brochure" <?php echo sanitize_text_field( $display ); ?>>
+		class="modal-form influactive-modal-form-brochure" <?php echo $display; ?>>
 		<div class="modal-content">
 			<span id="modal-form-close" class="close">&times;</span>
-			<h2><?php echo sanitize_text_field( $title ); ?></h2>
+			<h2><?php echo $title; ?></h2>
 			<hr>
-			<div class="description"><?php echo wp_kses_post( $description ); ?></div>
+			<div class="description"><?php echo $description; ?></div>
 			<?= do_shortcode( "[influactive_form id='$form_id']" ) ?>
 		</div>
 	</div>
