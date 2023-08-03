@@ -81,7 +81,6 @@ function influactive_load_admin_scripts( string $hook ): void {
 	wp_enqueue_script( 'influactive-modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'dist/backEnd.bundled.js', array( 'choices-js' ), '1.3', true );
 	wp_enqueue_style( 'influactive-modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'dist/admin.bundled.css', array(), '1.3' );
 
-	// Enqueue choices.js CSS et JS
 	wp_enqueue_style( 'choices-css', 'https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.2.0/choices.min.css', array(), '10.2.0' );
 	wp_enqueue_script( 'choices-js', 'https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.2.0/choices.min.js', array(), '10.2.0', true );
 }
@@ -106,12 +105,13 @@ function influactive_add_modal_form(): void {
 	$form_id = (int) get_option( 'modal_form_select', false );
 
 	?>
-	<div id="modal-form" class="modal-form influactive-modal-form-brochure" <?= $display ?>>
+	<div id="modal-form"
+			 class="modal-form influactive-modal-form-brochure" <?php echo sanitize_text_field( $display ); ?>>
 		<div class="modal-content">
 			<span id="modal-form-close" class="close">&times;</span>
-			<h2><?= $title ?></h2>
+			<h2><?php echo sanitize_text_field( $title ); ?></h2>
 			<hr>
-			<div class="description"><?= $description ?></div>
+			<div class="description"><?php echo wp_kses_post( $description ); ?></div>
 			<?= do_shortcode( "[influactive_form id='$form_id']" ) ?>
 		</div>
 	</div>
@@ -135,7 +135,7 @@ function influactive_modal_form_options_page(): void {
 	ob_start();
 	?>
 	<div class="wrap">
-		<h1><?= esc_html( get_admin_page_title() ); ?></h1>
+		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 		<form action="options.php" method="post">
 			<?php
 			settings_fields( 'modal_form_options' );
@@ -183,8 +183,9 @@ function influactive_modal_form_fields_callback(): void {
 			<label for="modal_form_title"><?= __( 'Modal Title:', 'influactive-modal-form-brochure' ) ?></label>
 			<input
 				id="modal_form_title" type="text" name="modal_form_title"
-				value="<?= esc_attr( $form_title ?? 'Do you want to download this product sheet?' ) ?>">
-			<label for="modal_form_description"><?= __( 'Modal Description:', 'influactive-modal-form-brochure' ) ?></label>
+				value="<?php echo esc_attr( $form_title ?? 'Do you want to download this product sheet?' ); ?>">
+			<label
+				for="modal_form_description"><?php echo __( 'Modal Description:', 'influactive-modal-form-brochure' ); ?></label>
 			<?php
 			wp_editor( $form_description, 'modal_form_description', array(
 				'textarea_name' => 'modal_form_description',
@@ -194,10 +195,10 @@ function influactive_modal_form_fields_callback(): void {
 			) );
 			?>
 			<label for="modal_form_select">
-				<?= __( 'Select Form to use:', 'influactive-modal-form-brochure' ) ?>
+				<?php echo __( 'Select Form to use:', 'influactive-modal-form-brochure' ); ?>
 			</label>
 			<select id="modal_form_select" name="modal_form_select">
-				<option value="" disabled><?= __( '- Select -', 'influactive-modal-form-brochure' ) ?></option>
+				<option value="" disabled><?php echo __( '- Select -', 'influactive-modal-form-brochure' ); ?></option>
 				<?php
 				$args        = array(
 					'post_type'   => 'influactive-forms',
@@ -210,7 +211,7 @@ function influactive_modal_form_fields_callback(): void {
 						$forms_query->the_post();
 						$selected = get_the_ID() === (int) $form_select ? 'selected' : '';
 						?>
-						<option value="<?php the_ID(); ?>" <?= $selected ?>><?php the_title(); ?></option>
+						<option value="<?php the_ID(); ?>" <?php echo $selected; ?>><?php the_title(); ?></option>
 						<?php
 					}
 					wp_reset_postdata();
@@ -220,7 +221,7 @@ function influactive_modal_form_fields_callback(): void {
 			<label for="modal_form_submit_text"><?= __( 'Submit Button Text:', 'influactive-modal-form-brochure' ) ?></label>
 			<input
 				id="modal_form_submit_text" type="text" name="modal_form_submit_text"
-				value="<?= esc_attr( $form_submit_text ?? 'Submit' ) ?>">
+				value="<?php echo esc_attr( $form_submit_text ?? 'Submit' ); ?>">
 		</div>
 
 		<div id="select_file_general_from_library">
@@ -230,22 +231,22 @@ function influactive_modal_form_fields_callback(): void {
 				type="text"
 				id="modal_form_file_select" name="modal_form_file_select"
 				readonly
-				value="<?= $file ?>"
+				value="<?php echo $file; ?>"
 			>
 			<button type="button"
-							id="upload-button"><?= __( 'Select File', 'influactive-modal-form-brochure' ) ?></button>
+							id="upload-button"><?php echo __( 'Select File', 'influactive-modal-form-brochure' ); ?></button>
 		</div>
 
 		<div id="content-select-posts">
 			<label
-				for="modal_form_posts"><?= __( 'Select Posts to show a modal at load:', 'influactive-modal-form-brochure' ) ?></label>
+				for="modal_form_posts"><?php echo __( 'Select Posts to show a modal at load:', 'influactive-modal-form-brochure' ); ?></label>
 			<?php
 			// Get selected posts
-			$selected_posts = get_option( 'modal_form_posts' ) ?? [
-				'modal_form_posts' => [
+			$selected_posts = get_option( 'modal_form_posts' ) ?? array(
+				'modal_form_posts' => array(
 					0 => 0,
-				],
-			];
+				),
+			);
 			$args           = array(
 				'post_type'   => 'any',
 				'post_status' => 'publish',
@@ -257,7 +258,7 @@ function influactive_modal_form_fields_callback(): void {
 			}
 			?>
 			<select id="modal_form_posts" name="modal_form_posts[]" multiple>
-				<option value="" disabled><?= __( '- Select -', 'influactive-modal-form-brochure' ) ?></option>
+				<option value="" disabled><?php echo __( '- Select -', 'influactive-modal-form-brochure' ); ?></option>
 				<?php
 				if ( $posts_query->have_posts() ) {
 					while ( $posts_query->have_posts() ) {
@@ -268,7 +269,7 @@ function influactive_modal_form_fields_callback(): void {
 
 						if ( $permalink && $post_type !== 'attachment' && $post_type !== 'influactive-forms' && ! is_wp_error( $permalink ) ) {
 							?>
-							<option value="<?php the_ID(); ?>" <?= $selected ?>><?php the_title(); ?></option>
+							<option value="<?php the_ID(); ?>" <?php echo $selected; ?>><?php the_title(); ?></option>
 							<?php
 						}
 					}
