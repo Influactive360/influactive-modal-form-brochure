@@ -216,7 +216,7 @@ function influactive_modal_form_fields_callback(): void {
 						$forms_query->the_post();
 						$selected = get_the_ID() === (int) $form_select ? 'selected' : '';
 						?>
-						<option value="<?php the_ID(); ?>" <?php echo $selected; ?>><?php the_title(); ?></option>
+						<option value="<?php the_ID(); ?>" <?php echo esc_html( $selected ); ?>><?php the_title(); ?></option>
 						<?php
 					}
 					wp_reset_postdata();
@@ -224,7 +224,9 @@ function influactive_modal_form_fields_callback(): void {
 				?>
 			</select>
 			<label
-				for="modal_form_submit_text"><?= esc_html__( 'Submit Button Text:', 'influactive-modal-form-brochure' ) ?></label>
+				for="modal_form_submit_text">
+				<?php echo esc_html__( 'Submit Button Text:', 'influactive-modal-form-brochure' ); ?>
+			</label>
 			<input
 				id="modal_form_submit_text" type="text" name="modal_form_submit_text"
 				value="<?php echo esc_attr( $form_submit_text ?? 'Submit' ); ?>">
@@ -232,20 +234,26 @@ function influactive_modal_form_fields_callback(): void {
 
 		<div id="select_file_general_from_library">
 			<label
-				for="modal_form_file_select"><?= esc_html__( 'Select File to to show a modal at load (also default file to not use ?file=ID for general case):', 'influactive-modal-form-brochure' ) ?></label>
+				for="modal_form_file_select">
+				<?php echo esc_html__( 'Select File to to show a modal at load (also default file to not use ?file=ID for general case):', 'influactive-modal-form-brochure' ); ?>
+			</label>
 			<input
 				type="text"
 				id="modal_form_file_select" name="modal_form_file_select"
 				readonly
-				value="<?php echo $file; ?>"
+				value="<?php echo esc_html( $file ); ?>"
 			>
 			<button type="button"
-							id="upload-button"><?php echo esc_html__( 'Select File', 'influactive-modal-form-brochure' ); ?></button>
+							id="upload-button">
+				<?php echo esc_html__( 'Select File', 'influactive-modal-form-brochure' ); ?>
+			</button>
 		</div>
 
 		<div id="content-select-posts">
 			<label
-				for="modal_form_posts"><?php echo esc_html__( 'Select Posts to show a modal at load:', 'influactive-modal-form-brochure' ); ?></label>
+				for="modal_form_posts">
+				<?php echo esc_html__( 'Select Posts to show a modal at load:', 'influactive-modal-form-brochure' ); ?>
+			</label>
 			<?php
 			$selected_posts = get_option( 'modal_form_posts' ) ?? array(
 				'modal_form_posts' => array(
@@ -263,7 +271,9 @@ function influactive_modal_form_fields_callback(): void {
 			}
 			?>
 			<select id="modal_form_posts" name="modal_form_posts[]" multiple>
-				<option value="" disabled><?php echo __( '- Select -', 'influactive-modal-form-brochure' ); ?></option>
+				<option value="" disabled>
+					<?php echo __( '- Select -', 'influactive-modal-form-brochure' ); ?>
+				</option>
 				<?php
 				if ( $posts_query->have_posts() ) {
 					while ( $posts_query->have_posts() ) {
