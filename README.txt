@@ -43,8 +43,5 @@ Add a link with #brochure and a parameter ?file= with the file ID. The result: #
 ![Settings page](https://i.ibb.co/XzMdHbM/plugin-settings.png)
 
 == Changelog ==
-= 1.1 =
-* ADD modal and default file to load modal on pages/posts at load
-
 = 1.3 =
 * Initial release
