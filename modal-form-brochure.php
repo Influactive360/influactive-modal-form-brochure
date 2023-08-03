@@ -304,7 +304,8 @@ add_action(
 			'edit.php?post_type=influactive-forms',
 			__( 'Modal Form Options', 'influactive-modal-form-brochure' ),
 			__( 'Modal Form Options', 'influactive-modal-form-brochure' ),
-			'manage_options', 'modal-form-options',
+			'manage_options',
+			'modal-form-options',
 			'influactive_modal_form_options_page'
 		);
 	}
