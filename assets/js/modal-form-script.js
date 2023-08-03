@@ -1,12 +1,12 @@
 import '../css/modal-form-style.scss'
 
-/* global grecaptcha, ajax_object */
+/* global grecaptcha, ajaxObject */
 
 /**
  * @param {Element} messageDiv
  * @param {Element} form
  * @param {string|Blob} file
- * @param {T|string|Blob} recaptchaResponse
+ * @param {string|Blob} recaptchaResponse
  */
 function submitForm(messageDiv, form, file, recaptchaResponse) {
   const xhr = new XMLHttpRequest()
@@ -22,7 +22,7 @@ function submitForm(messageDiv, form, file, recaptchaResponse) {
     formData.append('brochure', file)
   }
 
-  xhr.open('POST', ajax_object.ajaxurl, true)
+  xhr.open('POST', ajaxObject.ajaxurl, true)
 
   xhr.onload = function () {
     if (xhr.status === 200) {
