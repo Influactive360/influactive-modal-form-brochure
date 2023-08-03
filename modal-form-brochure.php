@@ -103,21 +103,15 @@ function influactive_add_modal_form(): void {
 	}
 
 	$form_id = (int) get_option( 'modal_form_select', false );
-
-	// Escaping outputs
-	$title       = esc_html( $title );
-	$description = wp_kses_post( $description );
-	$display     = esc_attr( $display );
-
 	?>
 	<div
 		id="modal-form"
-		class="modal-form influactive-modal-form-brochure" <?php echo $display; ?>>
+		class="modal-form influactive-modal-form-brochure" <?php echo esc_attr( $display ); ?>>
 		<div class="modal-content">
 			<span id="modal-form-close" class="close">&times;</span>
-			<h2><?php echo $title; ?></h2>
+			<h2><?php echo esc_html( $title ); ?></h2>
 			<hr>
-			<div class="description"><?php echo $description; ?></div>
+			<div class="description"><?php echo wp_kses_post( $description ); ?></div>
 			<?= do_shortcode( "[influactive_form id='$form_id']" ) ?>
 		</div>
 	</div>
@@ -186,7 +180,7 @@ function influactive_modal_form_fields_callback(): void {
 	?>
 	<div class="columns-brochure">
 		<div id="content-edit">
-			<label for="modal_form_title"><?= __( 'Modal Title:', 'influactive-modal-form-brochure' ) ?></label>
+			<label for="modal_form_title"><?php echo __( 'Modal Title:', 'influactive-modal-form-brochure' ); ?></label>
 			<input
 				id="modal_form_title" type="text" name="modal_form_title"
 				value="<?php echo esc_attr( $form_title ?? 'Do you want to download this product sheet?' ); ?>">
