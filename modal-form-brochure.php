@@ -105,8 +105,9 @@ function influactive_add_modal_form(): void {
 	$form_id = (int) get_option( 'modal_form_select', false );
 
 	?>
-	<div id="modal-form"
-			 class="modal-form influactive-modal-form-brochure" <?php echo sanitize_text_field( $display ); ?>>
+	<div
+		id="modal-form"
+		class="modal-form influactive-modal-form-brochure" <?php echo sanitize_text_field( $display ); ?>>
 		<div class="modal-content">
 			<span id="modal-form-close" class="close">&times;</span>
 			<h2><?php echo sanitize_text_field( $title ); ?></h2>
