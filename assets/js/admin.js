@@ -1,6 +1,5 @@
 import '../css/admin-style.scss'
-
-/* global Choices, wp */
+import Choices from 'choices.js'
 
 /**
  * Initializes the Choices library for a given HTML select element.
