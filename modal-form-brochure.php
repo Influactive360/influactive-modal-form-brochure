@@ -78,11 +78,8 @@ function influactive_load_admin_scripts( string $hook ): void {
 		return;
 	}
 	wp_enqueue_media();
-	wp_enqueue_script( 'influactive-modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'dist/backEnd.bundled.js', array( 'choices-js' ), '1.3', true );
+	wp_enqueue_script( 'influactive-modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'dist/backEnd.bundled.js', array(), '1.3', true );
 	wp_enqueue_style( 'influactive-modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'dist/admin.bundled.css', array(), '1.3' );
-
-	wp_enqueue_style( 'choices-css', 'https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.2.0/choices.min.css', array(), '10.2.0' );
-	wp_enqueue_script( 'choices-js', 'https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.2.0/choices.min.js', array(), '10.2.0', true );
 }
 
 add_action( 'admin_enqueue_scripts', 'influactive_load_admin_scripts' );
