@@ -272,7 +272,7 @@ function influactive_modal_form_fields_callback(): void {
 			?>
 			<select id="modal_form_posts" name="modal_form_posts[]" multiple>
 				<option value="" disabled>
-					<?php echo __( '- Select -', 'influactive-modal-form-brochure' ); ?>
+					<?php echo esc_html__( '- Select -', 'influactive-modal-form-brochure' ); ?>
 				</option>
 				<?php
 				if ( $posts_query->have_posts() ) {
@@ -282,9 +282,9 @@ function influactive_modal_form_fields_callback(): void {
 						$permalink = get_permalink();
 						$post_type = get_post_type();
 
-						if ( $permalink && $post_type !== 'attachment' && $post_type !== 'influactive-forms' && ! is_wp_error( $permalink ) ) {
+						if ( $permalink && 'attachment' !== $post_type && 'influactive-forms' !== $post_type && ! is_wp_error( $permalink ) ) {
 							?>
-							<option value="<?php the_ID(); ?>" <?php echo $selected; ?>><?php the_title(); ?></option>
+							<option value="<?php the_ID(); ?>" <?php echo esc_html( $selected ); ?>><?php the_title(); ?></option>
 							<?php
 						}
 					}
@@ -297,9 +297,18 @@ function influactive_modal_form_fields_callback(): void {
 	<?php
 }
 
-add_action( 'admin_menu', static function () {
-	add_submenu_page( 'edit.php?post_type=influactive-forms', __( 'Modal Form Options', 'influactive-modal-form-brochure' ), __( 'Modal Form Options', 'influactive-modal-form-brochure' ), 'manage_options', 'modal-form-options', 'influactive_modal_form_options_page' );
-} );
+add_action(
+	'admin_menu',
+	static function () {
+		add_submenu_page(
+			'edit.php?post_type=influactive-forms',
+			__( 'Modal Form Options', 'influactive-modal-form-brochure' ),
+			__( 'Modal Form Options', 'influactive-modal-form-brochure' ),
+			'manage_options', 'modal-form-options',
+			'influactive_modal_form_options_page'
+		);
+	}
+);
 
 /**
  * Validates the input for the influactive_modal_posts_select form field.
@@ -326,7 +335,7 @@ function influactive_modal_posts_select_validate( array $input ): array {
  */
 function influactive_add_action_links( array $links ): array {
 	$mylinks = array(
-		'<a href="' . admin_url( 'edit.php?post_type=influactive-forms&page=modal-form-options' ) . '">' . __( "Settings", "influactive-modal-form-brochure" ) . '</a>',
+		'<a href="' . admin_url( 'edit.php?post_type=influactive-forms&page=modal-form-options' ) . '">' . __( 'Settings', 'influactive-modal-form-brochure' ) . '</a>',
 	);
 
 	return array_merge( $links, $mylinks );
