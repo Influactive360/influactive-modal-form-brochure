@@ -34,10 +34,13 @@ const handleUploadButtonClick = (e, mediaParam, inputFieldParam) => {
     return
   }
 
-  // eslint-disable-next-line no-multi-assign
-  mediaUploader = wp.media.frames.file_frame = wp.media({
+  const media = wp.media({
     multiple: false,
   })
+
+  mediaUploader = media
+
+  wp.media.frames.file_frame = media
 
   mediaUploader.on('select', () => {
     const attachment = mediaUploader.state().get('selection').first().toJSON()
