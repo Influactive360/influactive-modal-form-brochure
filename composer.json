@@ -1,8 +1,8 @@
 {
-  "name": "vendor_name/influactive-forms",
-  "description": "A plugin to create custom forms and display them anywhere on your website.",
+  "name": "influactive/modal-form-brochure",
+  "description": "Modal Form Brochure is a simple plugin that displays a modal with a form when the user clicks on a link with the ID `#brochure` and a parameter `?file=FILEID`.",
   "minimum-stability": "stable",
-  "license": "proprietary",
+  "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "influactive",
