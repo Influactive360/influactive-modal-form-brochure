@@ -11,7 +11,7 @@ Influactive ([https://influactive.com](https://influactive.com))
 
 ## Version
 
-1.5.0
+1.5.1
 
 ## Installation
 

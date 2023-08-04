@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Modal Forms Brochure by Influactive
  * Description: A plugin to display a modal with a form on a link click (#brochure and a parameter ?file=ID).
- * Version: 1.5.0
+ * Version: 1.5.1
  * Author: Influactive
  * Author URI: https://influactive.com
  * Text Domain: influactive-modal-form-brochure
@@ -18,15 +18,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	throw new RuntimeException( 'WordPress environment not loaded. Exiting...' );
 }
 
-include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+add_action( 'admin_init', function () {
+	if ( ! influactive_is_active() ) {
+		add_action( 'admin_notices', 'show_influactive_forms_error_notice' );
+		if ( function_exists( 'deactivate_plugins' ) ) {
+			deactivate_plugins( plugin_basename( __FILE__ ) );
+		}
+	}
+} );
 
 /**
  * Checks if the plugin Forms everywhere by Influactive is active.
  *
  * @return bool True if the plugin is active, false otherwise.
  */
-function is_influactive_active(): bool {
-	return is_plugin_active( 'influactive-forms/functions.php' );
+function influactive_is_active(): bool {
+	$active_plugins = get_option( 'active_plugins' );
+
+	return in_array( 'influactive-forms/functions.php', $active_plugins, true );
 }
 
 /**
@@ -44,13 +53,6 @@ function show_influactive_forms_error_notice(): void {
 	<?php
 }
 
-if ( ! is_influactive_active() ) {
-	add_action( 'admin_notices', 'show_influactive_forms_error_notice' );
-	deactivate_plugins( plugin_basename( __FILE__ ) );
-
-	return;
-}
-
 /**
  * Enqueues the necessary scripts and styles for the Modal Form Brochure plugin.
  *
@@ -60,8 +62,8 @@ function influactive_load_modal_form_scripts(): void {
 	if ( is_admin() ) {
 		return;
 	}
-	wp_enqueue_script( 'influactive-modal-form-brochure', plugin_dir_url( __FILE__ ) . 'dist/frontEnd.bundled.js', array(), '1.5.0', true );
-	wp_enqueue_style( 'influactive-modal-form-brochure', plugin_dir_url( __FILE__ ) . 'dist/modal-form-script.bundled.css', array(), '1.5.0' );
+	wp_enqueue_script( 'influactive-modal-form-brochure', plugin_dir_url( __FILE__ ) . 'dist/frontEnd.bundled.js', array(), '1.5.1', true );
+	wp_enqueue_style( 'influactive-modal-form-brochure', plugin_dir_url( __FILE__ ) . 'dist/modal-form-script.bundled.css', array(), '1.5.1' );
 }
 
 add_action( 'wp_enqueue_scripts', 'influactive_load_modal_form_scripts' );
@@ -78,8 +80,8 @@ function influactive_load_admin_scripts( string $hook ): void {
 		return;
 	}
 	wp_enqueue_media();
-	wp_enqueue_script( 'influactive-modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'dist/backEnd.bundled.js', array(), '1.5.0', true );
-	wp_enqueue_style( 'influactive-modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'dist/admin.bundled.css', array(), '1.5.0' );
+	wp_enqueue_script( 'influactive-modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'dist/backEnd.bundled.js', array(), '1.5.1', true );
+	wp_enqueue_style( 'influactive-modal-form-brochure-admin', plugin_dir_url( __FILE__ ) . 'dist/admin.bundled.css', array(), '1.5.1' );
 }
 
 add_action( 'admin_enqueue_scripts', 'influactive_load_admin_scripts' );
