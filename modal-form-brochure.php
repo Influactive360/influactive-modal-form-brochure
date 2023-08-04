@@ -18,14 +18,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	throw new RuntimeException( 'WordPress environment not loaded. Exiting...' );
 }
 
-add_action( 'admin_init', function () {
-	if ( ! influactive_is_active() ) {
-		add_action( 'admin_notices', 'show_influactive_forms_error_notice' );
-		if ( function_exists( 'deactivate_plugins' ) ) {
-			deactivate_plugins( plugin_basename( __FILE__ ) );
+add_action(
+	'admin_init',
+	static function () {
+		if ( ! influactive_is_active() ) {
+			add_action(
+				'admin_notices',
+				'show_influactive_forms_error_notice' );
+			if ( function_exists( 'deactivate_plugins' ) ) {
+				deactivate_plugins( plugin_basename( __FILE__ ) );
+			}
 		}
-	}
-} );
+	} );
 
 /**
  * Checks if the plugin Forms everywhere by Influactive is active.
