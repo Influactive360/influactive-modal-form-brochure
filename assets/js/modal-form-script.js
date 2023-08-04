@@ -3,17 +3,18 @@ import '../css/modal-form-style.scss'
 /* global grecaptcha, ajaxObject */
 
 /**
- * Submit form data using AJAX request.
+ * Sends a form submission via AJAX.
  *
- * @param {HTMLElement} messageDivParam - The message div element.
+ * @param {Element} messageDivParam - The element to display the result message.
  * @param {HTMLFormElement} form - The form element to submit.
- * @param {File} file - The file to attach to the form data. Optional.
- * @param {string} recaptchaResponse - The reCAPTCHA response. Optional.
+ * @param {File} file - The file to be uploaded (optional).
+ * @param {string} recaptchaResponse - The response from reCAPTCHA (optional).
  */
 const submitForm = (messageDivParam, form, file, recaptchaResponse) => {
+  let message
+  const messageDiv = messageDivParam
   const xhr = new XMLHttpRequest()
   const formData = new FormData(form)
-  const messageDiv = { ...messageDivParam } // Clone the object
   formData.append('action', 'send_email')
 
   if (recaptchaResponse) {
@@ -27,18 +28,29 @@ const submitForm = (messageDivParam, form, file, recaptchaResponse) => {
 
   xhr.open('POST', ajaxObject.ajaxurl, true)
 
-  xhr.onload = function xhrOnload() {
+  xhr.onload = function xhrOnLoad() {
     if (xhr.status === 200) {
-      const response = JSON.parse(xhr.responseText)
-      if (response.data) {
-        messageDiv.textContent = response.data.message
-        form.reset()
-      } else {
-        messageDiv.textContent = response.data.message
+      try {
+        const response = JSON.parse(xhr.responseText)
+        if (response.data) {
+          message = response.data.message
+          form.reset()
+        } else {
+          message = 'An error occurred while processing the response'
+        }
+      } catch (error) {
+        message = 'An error occurred while parsing the response'
       }
+      messageDiv.textContent = message
     } else {
-      messageDiv.textContent = 'An error occurred with the AJAX request'
+      message = 'An error occurred with the AJAX request'
+      messageDiv.textContent = message
     }
+  }
+
+  xhr.onerror = () => {
+    message = 'An error occurred while making the AJAX request'
+    messageDiv.textContent = message
   }
 
   xhr.send(formData)
