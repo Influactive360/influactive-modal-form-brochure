@@ -31,7 +31,7 @@
     "@microsoft/eslint-formatter-sarif": "^3.0.0",
     "choices.js": "^10.2.0",
     "sass": "^1.65.1",
-    "vite": "^4.4.9"
+    "vite": "^4.4.11"
   },
   "devDependencies": {
     "eslint": "^8.46.0",
